@@ -1,6 +1,6 @@
 module Zint
   RSpec.describe Barcode do
-    let(:outfile) { File.join(Dir.tmpdir, "out.png") }
+    let(:outfile) { File.join(Dir.tmpdir, "out.svg") }
     let(:buffer_outfile) { File.join(Dir.tmpdir, "buffer.png") }
     let(:input_file) { "spec/fixtures/input_file.txt" }
 

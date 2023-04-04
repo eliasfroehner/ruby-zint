@@ -57,7 +57,7 @@ RSpec.describe Zint do
 
     describe "barcode generation functions" do
       require "tmpdir"
-      let(:outfile) { File.join(Dir.tmpdir, "out.png") }
+      let(:outfile) { File.join(Dir.tmpdir, "out.svg") }
       let(:input_file) { "spec/fixtures/input_file.txt" }
 
       before do
