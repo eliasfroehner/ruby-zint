@@ -1,15 +1,23 @@
 module Zint
-  # A base class to represent the barcode being encoded
+  # Base class to represent the barcode
+  #
+  # @example Create new barcode
+  #   barcode = Zint::Barcode.new(value: "Test", type: Zint::BARCODE_QRCODE, options: {option_1: 1})
+  #   barcode.to_file(path: "qr.png")
   class Barcode
-    # The value of the barcode
+    # @return [String, NilClass] Content of the barcode
     attr_accessor :value
-    # The input data file
+    # @return [String, NilClass] Path to input file with content of the barcode
     attr_accessor :input_file
-    # The type of barcode generated (e.g. EAN, UPC, QR Code, Data Matrix, ...)
+    # @return [Integer] Type of barcode
     attr_reader :type
-    # Access for the underlying FFI ManagedStruct of the Zint C struct
+    # @return [Zint::Structs::Symbol] The underlying FFI struct of the Zint C struct
     attr_reader :zint_symbol
 
+    # @param value [String, NilClass] Content of the barcode
+    # @param input_file [String, NilClass] Path to input file with content of the barcode
+    # @param type [Integer] Type of barcode
+    # @param options [Hash] Specific options for Zint symbol
     def initialize(value: nil, input_file: nil, type: Zint::BARCODE_CODE128, options: {})
       raise ArgumentError, "value or input_file must be given!" if value&.empty? && input_file&.empty?
       raise ArgumentError, "input_file not found!" if input_file && !File.exist?(input_file)
@@ -24,6 +32,9 @@ module Zint
       @input_file = input_file
     end
 
+    # Sets type of barcode
+    #
+    # @param type [Integer] Type of barcode
     def type=(type)
       @type = type
 
@@ -32,6 +43,10 @@ module Zint
       @zint_symbol[:symbology] = type
     end
 
+    # Exports barcode to file
+    #
+    # @param path [String] Path to export file
+    # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
     def to_file(path:, rotate_angle: 0)
       @zint_symbol[:outfile] = path
 
@@ -42,6 +57,11 @@ module Zint
       end
     end
 
+    # Exports barcode to memory file
+    #
+    # @param extension [String] Extension exported memory file
+    # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
+    # @return [String] Exported memory file
     def to_memory_file(extension: ".png", rotate_angle: 0)
       require "tempfile"
       file = Tempfile.new(["zint", extension])
@@ -56,6 +76,11 @@ module Zint
       buffer
     end
 
+    # Exports barcode to buffer
+    #
+    # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
+    # @param raw_bitmap [Boolean] Export raw zint bitmap
+    # @return [Zint::Bitmap, String] Exported memory file
     def to_buffer(rotate_angle: 0, raw_bitmap: false)
       @zint_symbol[:output_options] = Zint::OUT_BUFFER_INTERMEDIATE
 
@@ -87,6 +112,10 @@ module Zint
       end
     end
 
+    # Exports barcode as Zint vector
+    #
+    # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
+    # @return [Zint::Structs::Vector] Vector data of barcode
     def to_vector(rotate_angle: 0)
       if input_file
         call_function(:ZBarcode_Encode_File_and_Buffer_Vector, zint_symbol, input_file, rotate_angle)

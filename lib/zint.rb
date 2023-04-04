@@ -152,6 +152,11 @@ module Zint
     ERROR_CLASS_FOR_RESULT[v] = klass
   end
 
+  # Raises specific error for API return code
+  #
+  # @param res [Symbol, Integer] API return code
+  # @param text [String] error text
+  # @raise [Error]
   def self.raise_error(res, text)
     klass = ERROR_CLASS_FOR_RESULT[res.is_a?(Symbol) ? Zint::ERRORS[res] : res]
     raise klass, text
@@ -222,6 +227,9 @@ module Zint
   # Return the version of Zint linked to
   attach_function(:ZBarcode_Version, :ZBarcode_Version, [], :int32)
 
+  # Returns library version of the current zint
+  #
+  # @return [Integer] library version
   def self.library_version
     Zint.ZBarcode_Version
   end
