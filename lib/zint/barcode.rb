@@ -29,7 +29,7 @@ module Zint
 
       call_function(:ZBarcode_Clear, zint_symbol)
 
-      symbol[:symbology] = type
+      @zint_symbol[:symbology] = type
     end
 
     def to_file(path:, rotate_angle: 0)
@@ -56,7 +56,7 @@ module Zint
       buffer
     end
 
-    def to_buffer(rotate_angle: 0)
+    def to_buffer(rotate_angle: 0, raw_bitmap: false)
       @zint_symbol[:output_options] = Zint::OUT_BUFFER_INTERMEDIATE
 
       if input_file
@@ -67,20 +67,24 @@ module Zint
 
       zint_bitmap = zint_symbol[:bitmap].read_string((zint_symbol[:bitmap_width] * zint_symbol[:bitmap_height]))
 
-      pixels = []
-      zint_symbol[:bitmap_height].times do |row|
-        zint_symbol[:bitmap_width].times do |column|
-          pixel = zint_bitmap.slice!(0, 1)
-          colour = if %w[0 1].include?(pixel)
-            (pixel == "1") ? "K" : "W"
-          else
-            pixel
+      if raw_bitmap
+        zint_bitmap
+      else
+        pixels = []
+        zint_symbol[:bitmap_height].times do |row|
+          zint_symbol[:bitmap_width].times do |column|
+            pixel = zint_bitmap.slice!(0, 1)
+            colour = if %w[0 1].include?(pixel)
+              (pixel == "1") ? "K" : "W"
+            else
+              pixel
+            end
+            pixels << BitmapPixel.new(column, row, colour)
           end
-          pixels << BitmapPixel.new(column, row, colour)
         end
-      end
 
-      Bitmap.new(zint_symbol[:bitmap_width], zint_symbol[:bitmap_height], pixels)
+        Bitmap.new(zint_symbol[:bitmap_width], zint_symbol[:bitmap_height], pixels)
+      end
     end
 
     def to_vector(rotate_angle: 0)

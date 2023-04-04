@@ -1,8 +1,8 @@
 module Zint
   RSpec.describe Barcode do
-    describe "exports" do
-      let(:barcode) { described_class.new(value: "Test") }
+    let(:barcode) { described_class.new(value: "Test") }
 
+    describe "exports" do
       let(:outfile) { File.join(Dir.tmpdir, "out.png") }
       let(:buffer_outfile) { File.join(Dir.tmpdir, "buffer.png") }
       let(:input_file) { "spec/fixtures/input_file.txt" }
@@ -44,10 +44,27 @@ module Zint
         expect(Digest::MD5.file(buffer_outfile).hexdigest).to eq Digest::MD5.file("spec/fixtures/buffer.png").hexdigest
       end
 
+      it "exports barcode to zint bitmap" do
+        bitmap = barcode.to_buffer(raw_bitmap: true)
+
+        expected_bitmap = File.read("spec/fixtures/barcode_raw_bitmap.txt")
+        expect(bitmap).to eq expected_bitmap
+      end
+
       it "exports barcode as vector" do
         vector_struct = barcode.to_vector
 
         expect(vector_struct.is_a?(Zint::Structs::Vector)).to be true
+      end
+    end
+
+    describe "#type=" do
+      it "changes symbology correctly" do
+        code_128_svg_file = barcode.to_memory_file(extension: ".svg")
+        barcode.type = Zint::BARCODE_CODE39
+        code_128b_svg_file = barcode.to_memory_file(extension: ".svg")
+
+        expect(code_128_svg_file).not_to eq code_128b_svg_file
       end
     end
 
