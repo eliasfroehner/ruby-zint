@@ -37,6 +37,7 @@ module Zint
   autoload :Bitmap, "zint/bitmap"
   autoload :BitmapPixel, "zint/bitmap_pixel"
   autoload :Barcode, "zint/barcode"
+  autoload :DataMatrix, "zint/data_matrix"
   autoload :QR, "zint/qr"
 
   extend FFI::Library
