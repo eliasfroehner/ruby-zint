@@ -9,10 +9,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # - os: windows
-          #   ruby: 'head'
-          # - os: windows
-          #   ruby: '2.5'
+          - os: windows
+            ruby: 'head'
+          - os: windows
+            ruby: '2.6'
           - os: ubuntu
             ruby: 'head'
           - os: ubuntu
@@ -46,6 +46,12 @@ jobs:
           cmake ..
           make
           sudo make install
+
+      - name: Windows install zint
+        if: matrix.os == 'windows'
+        run: |
+          wget https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-zint-2.10.0-1-any.pkg.tar.zst
+          pacman -U --noconfirm ./mingw-w64-ucrt-x86_64-zint-2.10.0-1-any.pkg.tar.zst
 
       - name: Print tool versions
         run: |
