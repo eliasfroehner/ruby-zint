@@ -33,10 +33,11 @@ module Zint
   include Constants::WarnLevels
   include Constants::Warnings
 
-  # Barcodes
-  autoload :Barcode, "zint/barcode"
+  # Barcode
   autoload :Bitmap, "zint/bitmap"
   autoload :BitmapPixel, "zint/bitmap_pixel"
+  autoload :Barcode, "zint/barcode"
+  autoload :QR, "zint/qr"
 
   extend FFI::Library
 
