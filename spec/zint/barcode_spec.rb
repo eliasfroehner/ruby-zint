@@ -16,7 +16,6 @@ module Zint
       it "exports barcode to file" do
         barcode.to_file(path: outfile)
 
-        pp outfile
         expect(File.exist?(outfile)).to be true
       end
 
