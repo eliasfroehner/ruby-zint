@@ -23,7 +23,7 @@ Or include `gem "ruby-zint"` in your Gemfile.
 ```ruby
 require "zint"
 
-barcode = Zint::Barcode.new(value: "Test")
+barcode = Zint::Barcode.new(value: "Test", type: Zint::BARCODE_CODE128)
 
 # Export to file
 barcode.to_file(path: "out.png")
@@ -59,8 +59,8 @@ ean_barcode = Zint::Eanx.new(value: "012345678912")
 ean_barcode.to_file(path: "ean.png")
 
 # Code128
-ean_barcode = Zint::Code128.new(value: "012345678912")
-ean_barcode.to_file(path: "ean.png")
+code_128_barcode = Zint::Code128.new(value: "012345678912")
+code_128_barcode.to_file(path: "code_128.png")
 
 ```
 
