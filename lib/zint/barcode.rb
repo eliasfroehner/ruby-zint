@@ -11,7 +11,7 @@ module Zint
     attr_reader :zint_symbol
 
     def initialize(value: nil, input_file: nil, type: Zint::BARCODE_CODE128, options: {})
-      raise ArgumentError, "value or input_file must be given!" if value.empty? && input_file.empty?
+      raise ArgumentError, "value or input_file must be given!" if value&.empty? && input_file&.empty?
       raise ArgumentError, "input_file not found!" if input_file && !File.exist?(input_file)
 
       @zint_symbol = create_symbol(type)
