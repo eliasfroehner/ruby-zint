@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ruby-zint (0.1.0)
+    ruby-zint (1.0.0)
       ffi (~> 1.15)
 
 GEM
