@@ -162,7 +162,7 @@ module Zint
     raise klass, text
   end
 
-  ffi_lib %w[libzint.so.2.10 zint]
+  ffi_lib %w[libzint.so.2.10 libzint zint]
 
   # Error codes (API return values)
   enum :error_code, [Zint::WARNINGS, Zint::ERRORS].map { |h| h.to_a }.flatten
