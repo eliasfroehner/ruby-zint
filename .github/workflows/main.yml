@@ -65,3 +65,10 @@ jobs:
         if: matrix.os == 'ubuntu' && matrix.ruby == 'head'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+  standardrb:
+    runs-on: ubuntu-latest
+    steps:
+      - name: standardrb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: amoeba/standardrb-action@v4
