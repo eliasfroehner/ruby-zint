@@ -32,7 +32,6 @@ jobs:
           ruby-version: ${{ matrix.ruby }} # passed to ruby/setup-ruby
           apt-get: 'zint' # Ubuntu
           brew: 'cmake libpng qt5' # macOS
-          # mingw: 'fox swig gcc' # Windows mingw / mswin /ucrt
 
       - name: macOS build zint
         if: matrix.os == 'macos'
@@ -56,7 +55,6 @@ jobs:
       - name: Print tool versions
         run: |
           ruby -v
-          zint -h | grep "Zint version"
           gem env
 
       - name: Bundle install
@@ -64,3 +62,7 @@ jobs:
 
       - name: Run tests
         run: bundle exec rake spec
+
+      - uses: joshmfrankel/simplecov-check-action@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
