@@ -1,27 +1,60 @@
-name: Ruby
+name: CI
 
-on:
-  push:
-    branches:
-      - main
-
-  pull_request:
+on: [push, pull_request]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Ruby ${{ matrix.ruby }}
+  job_test_gem:
+    name: Test in source tree
     strategy:
+      fail-fast: false
       matrix:
-        ruby:
-          - '3.2.1'
+        include:
+          # - os: windows
+          #   ruby: 'head'
+          # - os: windows
+          #   ruby: '2.5'
+          - os: ubuntu
+            ruby: 'head'
+          - os: ubuntu
+            ruby: '3.2'
+          - os: ubuntu
+            ruby: '2.6'
+          - os: macos
+            ruby: 'head'
+
+    runs-on: ${{ matrix.os }}-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-    - name: Run the default task
-      run: bundle exec rake
+      - uses: actions/checkout@v3
+
+      - uses: ruby/setup-ruby-pkgs@v1
+        with:
+          ruby-version: ${{ matrix.ruby }} # passed to ruby/setup-ruby
+          apt-get: 'zint' # Ubuntu
+          brew: 'cmake libpng qt5' # macOS
+          # mingw: 'fox swig gcc' # Windows mingw / mswin /ucrt
+
+      - name: macOS build zint
+        if: matrix.os == 'macos'
+        run: |
+          export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
+          wget https://github.com/zint/zint/archive/refs/tags/2.10.0.zip
+          unzip 2.10.0.zip
+          cd zint-2.10.0
+          mkdir build
+          cd build
+          cmake ..
+          make
+          sudo make install
+
+      - name: Print tool versions
+        run: |
+          ruby -v
+          zint -h | grep "Zint version"
+          gem env
+
+      - name: Bundle install
+        run: bundle install
+
+      - name: Run tests
+        run: bundle exec rake spec
