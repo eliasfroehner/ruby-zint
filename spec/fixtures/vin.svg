@@ -1,0 +1,111 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="492" height="119" version="1.1"
+   xmlns="http://www.w3.org/2000/svg">
+   <desc>Zint Generated Symbol
+   </desc>
+
+   <g id="barcode" fill="#000000">
+      <rect x="0" y="0" width="492" height="119" fill="#FFFFFF" />
+      <rect x="0.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="6.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="10.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="16.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="22.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="26.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="30.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="36.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="42.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="48.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="52.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="58.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="64.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="68.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="72.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="78.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="82.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="90.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="94.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="98.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="104.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="110.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="118.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="122.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="126.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="130.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="134.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="140.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="146.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="150.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="156.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="162.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="168.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="174.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="178.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="182.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="186.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="194.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="200.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="204.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="208.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="212.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="218.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="222.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="228.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="234.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="240.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="246.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="250.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="256.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="260.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="264.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="272.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="276.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="282.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="286.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="290.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="296.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="302.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="308.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="312.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="318.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="324.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="328.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="332.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="338.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="342.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="350.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="354.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="358.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="364.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="370.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="378.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="382.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="386.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="390.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="394.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="400.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="406.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="410.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="416.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="422.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="428.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="434.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="438.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="442.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="446.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="454.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="460.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="464.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="468.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="474.00" y="0.00" width="2.00" height="100.00" />
+      <rect x="478.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="484.00" y="0.00" width="4.00" height="100.00" />
+      <rect x="490.00" y="0.00" width="2.00" height="100.00" />
+      <text x="246.00" y="115.40" text-anchor="middle"
+         font-family="Helvetica, sans-serif" font-size="14.0" >
+         01234567890123456
+      </text>
+   </g>
+</svg>

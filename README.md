@@ -52,6 +52,16 @@ vector_struct = barcode.to_vector
 barcode = Zint::Barcode.new(input_file: "/tmp/test.txt")
 barcode.to_file(path: "out.png")
 
+# Use of comfort classes
+
+# EAN
+ean_barcode = Zint::Eanx.new(value: "012345678912")
+ean_barcode.to_file(path: "ean.png")
+
+# Code128
+ean_barcode = Zint::Code128.new(value: "012345678912")
+ean_barcode.to_file(path: "ean.png")
+
 ```
 
 ## Contributing
