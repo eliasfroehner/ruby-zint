@@ -11,8 +11,6 @@ jobs:
         include:
           - os: windows
             ruby: 'head'
-          - os: windows
-            ruby: '2.6'
           - os: ubuntu
             ruby: 'head'
           - os: ubuntu
@@ -64,5 +62,6 @@ jobs:
         run: bundle exec rake spec
 
       - uses: joshmfrankel/simplecov-check-action@main
+        if: matrix.os == 'ubuntu' && matrix.ruby == 'head'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
