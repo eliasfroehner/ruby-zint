@@ -8,7 +8,7 @@ See the [documentation](https://rubydoc.info/github/api-walker/ruby-zint) for a 
 
 ## Installation
 
-Install the libzint binary with your package manager (eg. `apt install zint` or perhaps `brew install zint`).
+Install the libzint binary with your package manager (e. g. `apt install zint` or perhaps `brew install zint`).
 
 Other platforms require building [from source](https://www.zint.org.uk/manual/chapter/2).
 
