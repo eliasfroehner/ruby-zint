@@ -46,7 +46,7 @@ bitmap.pixels.each do |pixel|
   png.compose_pixel(pixel.x, pixel.y, (pixel.colour == "K") ? black : white)
 end
 
-png.save(buffer_outfile)
+png.save("out.png")
 
 # Use vector export
 vector_struct = barcode.to_vector
