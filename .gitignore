@@ -12,3 +12,4 @@
 
 # byebug
 .byebug_history
+/Gemfile.lock
