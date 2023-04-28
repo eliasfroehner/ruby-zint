@@ -7,6 +7,11 @@
 /spec/reports/
 /tmp/
 
+/ext/ruby-zint/Makefile
+/ext/ruby-zint/tmp/
+/lib/libzint.so*
+/ports/
+
 # rspec failure tracking
 .rspec_status
 

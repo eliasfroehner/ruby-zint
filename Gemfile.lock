@@ -3,6 +3,7 @@ PATH
   specs:
     ruby-zint (1.0.0)
       ffi (~> 1.15)
+      mini_portile2 (~> 2.1)
 
 GEM
   remote: https://rubygems.org/
@@ -15,6 +16,7 @@ GEM
     ffi (1.15.5)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
+    mini_portile2 (2.8.1)
     parallel (1.22.1)
     parser (3.2.1.1)
       ast (~> 2.4.1)
@@ -69,6 +71,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   chunky_png
+  mini_portile2
   rake (~> 13.0)
   rspec (~> 3.0)
   ruby-zint!

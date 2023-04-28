@@ -14,3 +14,5 @@ gem "chunky_png"
 gem "byebug"
 
 gem "standard", "~> 1.3"
+
+gem "mini_portile2"

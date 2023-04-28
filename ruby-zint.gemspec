@@ -1,4 +1,5 @@
 require_relative "lib/zint/version"
+require_relative "lib/zint/dependencies"
 
 Gem::Specification.new do |spec|
   spec.name = "ruby-zint"
@@ -21,7 +22,11 @@ Gem::Specification.new do |spec|
       (File.expand_path(f) == __FILE__) || f.start_with?(*%w[bin/ test/ spec/ features/ .git .circleci appveyor])
     end
   end
+  spec.files << "ports/archives/zint-#{Zint::ZINT_VERSION}-src.tar.gz"
+
   spec.require_paths = ["lib"]
+  spec.extensions = ["ext/ruby-zint/extconf.rb"]
 
   spec.add_dependency "ffi", "~> 1.15"
+  spec.add_dependency "mini_portile2", Zint::MINI_PORTILE_VERSION
 end
