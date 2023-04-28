@@ -177,55 +177,55 @@ module Zint
   typedef :string, :source
 
   # Create and initialize a symbol structure
-  attach_function(:ZBarcode_Create, :ZBarcode_Create, [], :zint_symbol)
+  attach_function(:ZBarcode_Create, [], :zint_symbol)
 
   # Free any output buffers that may have been created and initialize output fields
-  attach_function(:ZBarcode_Clear, :ZBarcode_Clear, [:zint_symbol], :void)
+  attach_function(:ZBarcode_Clear, [:zint_symbol], :void)
 
   # Free a symbol structure, including any output buffers
-  attach_function(:ZBarcode_Delete, :ZBarcode_Delete, [:zint_symbol], :void)
+  attach_function(:ZBarcode_Delete, [:zint_symbol], :void)
 
   # Encode a barcode. If `length` is 0, `source` must be NUL-terminated.
-  attach_function(:ZBarcode_Encode, :ZBarcode_Encode, [:zint_symbol, :source, :length], :error_code)
+  attach_function(:ZBarcode_Encode, [:zint_symbol, :source, :length], :error_code)
 
   # Encode a barcode using input data from file `filename`
-  attach_function(:ZBarcode_Encode_File, :ZBarcode_Encode_File, [:zint_symbol, :filename], :error_code)
+  attach_function(:ZBarcode_Encode_File, [:zint_symbol, :filename], :error_code)
 
   # Output a previously encoded symbol to file `symbol->outfile`
-  attach_function(:ZBarcode_Print, :ZBarcode_Print, [:zint_symbol, :rotate_angle], :error_code)
+  attach_function(:ZBarcode_Print, [:zint_symbol, :rotate_angle], :error_code)
 
   # Encode and output a symbol to file `symbol->outfile`
-  attach_function(:ZBarcode_Encode_and_Print, :ZBarcode_Encode_and_Print, [:zint_symbol, :source, :length, :rotate_angle], :error_code)
+  attach_function(:ZBarcode_Encode_and_Print, [:zint_symbol, :source, :length, :rotate_angle], :error_code)
 
   # Encode a symbol using input data from file `filename` and output to file `symbol->outfile`
-  attach_function(:ZBarcode_Encode_File_and_Print, :ZBarcode_Encode_File_and_Print, [:zint_symbol, :filename, :rotate_angle], :error_code)
+  attach_function(:ZBarcode_Encode_File_and_Print, [:zint_symbol, :filename, :rotate_angle], :error_code)
 
   # Output a previously encoded symbol to memory as raster (`symbol->bitmap`)
-  attach_function(:ZBarcode_Buffer, :ZBarcode_Buffer, [:zint_symbol, :rotate_angle], :error_code)
+  attach_function(:ZBarcode_Buffer, [:zint_symbol, :rotate_angle], :error_code)
 
   # Encode and output a symbol to memory as raster (`symbol->bitmap`)
-  attach_function(:ZBarcode_Encode_and_Buffer, :ZBarcode_Encode_and_Buffer, [:zint_symbol, :source, :length, :rotate_angle], :error_code)
+  attach_function(:ZBarcode_Encode_and_Buffer, [:zint_symbol, :source, :length, :rotate_angle], :error_code)
 
   # Encode a symbol using input data from file `filename` and output to memory as raster (`symbol->bitmap`)
-  attach_function(:ZBarcode_Encode_File_and_Buffer, :ZBarcode_Encode_File_and_Buffer, [:zint_symbol, :filename, :rotate_angle], :error_code)
+  attach_function(:ZBarcode_Encode_File_and_Buffer, [:zint_symbol, :filename, :rotate_angle], :error_code)
 
   # Output a previously encoded symbol to memory as vector (`symbol->vector`)
-  attach_function(:ZBarcode_Buffer_Vector, :ZBarcode_Buffer_Vector, [:zint_symbol, :rotate_angle], :error_code)
+  attach_function(:ZBarcode_Buffer_Vector, [:zint_symbol, :rotate_angle], :error_code)
 
   # Encode and output a symbol to memory as vector (`symbol->vector`)
-  attach_function(:ZBarcode_Encode_and_Buffer_Vector, :ZBarcode_Encode_and_Buffer_Vector, [:zint_symbol, :source, :length, :rotate_angle], :error_code)
+  attach_function(:ZBarcode_Encode_and_Buffer_Vector, [:zint_symbol, :source, :length, :rotate_angle], :error_code)
 
   # Encode a symbol using input data from file `filename` and output to memory as vector (`symbol->vector`)
-  attach_function(:ZBarcode_Encode_File_and_Buffer_Vector, :ZBarcode_Encode_File_and_Buffer_Vector, [:zint_symbol, :filename, :rotate_angle], :error_code)
+  attach_function(:ZBarcode_Encode_File_and_Buffer_Vector, [:zint_symbol, :filename, :rotate_angle], :error_code)
 
   # Is `symbol_id` a recognized symbology?
-  attach_function(:ZBarcode_ValidID, :ZBarcode_ValidID, [:symbol_id], :bool)
+  attach_function(:ZBarcode_ValidID, [:symbol_id], :bool)
 
   # Return the capability flags for symbology `symbol_id` that match `cap_flag`
-  attach_function(:ZBarcode_Cap, :ZBarcode_Cap, [:symbol_id, :cap_flag], :uint32)
+  attach_function(:ZBarcode_Cap, [:symbol_id, :cap_flag], :uint32)
 
   # Return the version of Zint linked to
-  attach_function(:ZBarcode_Version, :ZBarcode_Version, [], :int32)
+  attach_function(:ZBarcode_Version, [], :int32)
 
   # Returns library version of the current zint
   #
