@@ -7,6 +7,16 @@ This gem is a Ruby FFI binding for the [libzint](http://www.zint.org.uk) barcode
 See the [documentation](https://rubydoc.info/github/api-walker/ruby-zint) for a full API description.
 
 ## Installation
+### With libzint source code (recommended)
+First install CMake with your package manager (e. g. `apt install cmake`).
+
+Afterwards install the gem:
+
+```
+$ gem install ruby-zint -- --disable-system-libzint
+```
+
+### With system libraries
 
 Install the libzint binary with your package manager (e. g. `apt install zint` or perhaps `brew install zint`).
 
