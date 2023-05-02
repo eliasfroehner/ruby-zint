@@ -40,7 +40,7 @@ module Zint
 
       it "is different from other ECC levels" do
         qr_codes = [Zint::Qr::ECC_LEVEL_Q, Zint::Qr::ECC_LEVEL_H, Zint::Qr::ECC_LEVEL_M, Zint::Qr::ECC_LEVEL_L].map do |ecc_level|
-          described_class.new(value: "Test", ecc_level: ecc_level).to_buffer(raw_bitmap: true)
+          described_class.new(value: "Test", ecc_level: ecc_level).to_buffer
         end
 
         qr_codes.each_with_index do |base_qr_code, idx|

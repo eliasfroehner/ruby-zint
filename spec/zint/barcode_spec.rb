@@ -38,10 +38,10 @@ module Zint
         expect(svg_file.include?("<svg")).to be true
       end
 
-      it "exports barcode to buffer from given value" do
+      it "exports barcode to bitmap object from given value" do
         require "digest/md5"
 
-        bitmap = barcode.to_buffer
+        bitmap = barcode.to_bitmap
 
         require "chunky_png"
         png = ChunkyPNG::Image.new(bitmap.width, bitmap.height, ChunkyPNG::Color::TRANSPARENT)
@@ -49,7 +49,7 @@ module Zint
         black = ChunkyPNG::Color("black")
 
         bitmap.pixels.each do |pixel|
-          png.compose_pixel(pixel.x, pixel.y, (pixel.colour == "K") ? black : white)
+          png.compose_pixel(pixel.x, pixel.y, (pixel.colour == "1") ? black : white)
         end
 
         png.save(buffer_outfile)
@@ -57,10 +57,10 @@ module Zint
         expect(Digest::MD5.file(buffer_outfile).hexdigest).to eq Digest::MD5.file("spec/fixtures/buffer.png").hexdigest
       end
 
-      it "exports barcode to buffer from input file" do
+      it "exports barcode to bitmap object from input file" do
         require "digest/md5"
 
-        bitmap = barcode_with_input_file.to_buffer
+        bitmap = barcode_with_input_file.to_bitmap
 
         require "chunky_png"
         png = ChunkyPNG::Image.new(bitmap.width, bitmap.height, ChunkyPNG::Color::TRANSPARENT)
@@ -68,7 +68,7 @@ module Zint
         black = ChunkyPNG::Color("black")
 
         bitmap.pixels.each do |pixel|
-          png.compose_pixel(pixel.x, pixel.y, (pixel.colour == "K") ? black : white)
+          png.compose_pixel(pixel.x, pixel.y, (pixel.colour == "1") ? black : white)
         end
 
         png.save(buffer_outfile)
@@ -79,7 +79,7 @@ module Zint
       it "exports colored barcode to buffer from value" do
         require "digest/md5"
 
-        bitmap = described_class.new(value: "Test", type: Zint::BARCODE_ULTRA).to_buffer
+        bitmap = described_class.new(value: "Test", type: Zint::BARCODE_ULTRA).to_bitmap
 
         require "chunky_png"
         png = ChunkyPNG::Image.new(bitmap.width, bitmap.height, ChunkyPNG::Color::TRANSPARENT)
@@ -123,7 +123,7 @@ module Zint
       end
 
       it "exports barcode to zint bitmap" do
-        bitmap = barcode.to_buffer(raw_bitmap: true)
+        bitmap = barcode.to_buffer
 
         expected_bitmap = File.read("spec/fixtures/barcode_raw_bitmap.txt")
         expect(bitmap).to eq expected_bitmap

@@ -81,9 +81,8 @@ module Zint
     # Exports barcode to buffer
     #
     # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
-    # @param raw_bitmap [Boolean] Export raw zint bitmap
-    # @return [Zint::Bitmap, String] Exported memory file
-    def to_buffer(rotate_angle: 0, raw_bitmap: false)
+    # @return [String] Exported barcode buffer
+    def to_buffer(rotate_angle: 0)
       @zint_symbol[:output_options] = Zint::OUT_BUFFER_INTERMEDIATE
 
       if input_file
@@ -92,26 +91,24 @@ module Zint
         call_function(:ZBarcode_Encode_and_Buffer, zint_symbol, value, 0, rotate_angle)
       end
 
-      zint_bitmap = zint_symbol[:bitmap].read_bytes((zint_symbol[:bitmap_width] * zint_symbol[:bitmap_height]))
+      zint_symbol[:bitmap].read_bytes((zint_symbol[:bitmap_width] * zint_symbol[:bitmap_height]))
+    end
 
-      if raw_bitmap
-        zint_bitmap
-      else
-        pixels = []
-        zint_symbol[:bitmap_height].times do |row|
-          zint_symbol[:bitmap_width].times do |column|
-            pixel = zint_bitmap[pixels.size]
-            colour = if %w[0 1].include?(pixel)
-              (pixel == "1") ? "K" : "W"
-            else
-              pixel
-            end
-            pixels << BitmapPixel.new(column, row, colour)
-          end
+    # Exports barcode to buffer
+    #
+    # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
+    # @return [Zint::Bitmap] Exported bitmap
+    def to_bitmap(rotate_angle: 0)
+      zint_bitmap = to_buffer(rotate_angle: rotate_angle)
+
+      pixels = []
+      zint_symbol[:bitmap_height].times do |row|
+        zint_symbol[:bitmap_width].times do |column|
+          pixels << BitmapPixel.new(column, row, zint_bitmap[pixels.size])
         end
-
-        Bitmap.new(zint_symbol[:bitmap_width], zint_symbol[:bitmap_height], pixels)
       end
+
+      Bitmap.new(zint_symbol[:bitmap_width], zint_symbol[:bitmap_height], pixels)
     end
 
     # Exports barcode as Zint vector
