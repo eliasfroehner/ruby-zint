@@ -98,7 +98,7 @@ module Zint
         pixels = []
         zint_symbol[:bitmap_height].times do |row|
           zint_symbol[:bitmap_width].times do |column|
-            pixel = zint_bitmap.slice!(0, 1)
+            pixel = zint_bitmap[pixels.size]
             colour = if %w[0 1].include?(pixel)
               (pixel == "1") ? "K" : "W"
             else
