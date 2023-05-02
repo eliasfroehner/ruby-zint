@@ -92,7 +92,7 @@ module Zint
         call_function(:ZBarcode_Encode_and_Buffer, zint_symbol, value, 0, rotate_angle)
       end
 
-      zint_bitmap = zint_symbol[:bitmap].read_string((zint_symbol[:bitmap_width] * zint_symbol[:bitmap_height]))
+      zint_bitmap = zint_symbol[:bitmap].read_bytes((zint_symbol[:bitmap_width] * zint_symbol[:bitmap_height]))
 
       if raw_bitmap
         zint_bitmap
