@@ -1,6 +1,5 @@
 module Zint
   RSpec.describe Native do
-
     describe "errors" do
       it "raises error for given error code" do
         expect { described_class.raise_error(14, "test") }.to raise_error(Zint::ErrorNoncompliant)
@@ -24,7 +23,7 @@ module Zint
         end
 
         it "calls ZBarcode_Delete correctly" do
-          zint_symbol = described_class.ZBarcode_Create
+          described_class.ZBarcode_Create
 
           begin
             # free is called here instead of ZBarcode_Delete, since the GC would double free the Symbol otherwise.

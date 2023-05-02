@@ -81,7 +81,6 @@ module Zint
       klass = ERROR_CLASS_FOR_RESULT[res.is_a?(Symbol) ? Zint::ERRORS[res] : res]
       raise klass, text
     end
-
   end
 
   private_constant :Native
