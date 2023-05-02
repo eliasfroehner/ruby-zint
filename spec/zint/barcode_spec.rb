@@ -132,13 +132,57 @@ module Zint
       it "exports barcode as vector from given value" do
         vector_struct = barcode.to_vector
 
-        expect(vector_struct.is_a?(Zint::Structs::Vector)).to be true
+        expect(vector_struct.is_a?(Structs::Vector)).to be true
       end
 
       it "exports barcode as vector from input file" do
         vector_struct = barcode_with_input_file.to_vector
 
-        expect(vector_struct.is_a?(Zint::Structs::Vector)).to be true
+        expect(vector_struct.is_a?(Structs::Vector)).to be true
+      end
+
+      it "exports barcode as vector of strings" do
+        v = described_class.new(value: "ABC").to_vector
+        strs = v.each_string.to_a
+        expect(strs.size).to eq(1)
+        expect(strs[0].text).to eq("ABC")
+        expect(strs[0].x).to be > 10.0
+        expect(strs[0].y).to be > 10.0
+        expect(strs[0].fsize).to eq(14)
+        expect(strs[0].width).to be > 10.0
+        expect(strs[0].halign).to eq(0)
+        expect(strs[0].rotation).to eq(0)
+      end
+
+      it "exports barcode as vector of rectangles" do
+        v = described_class.new(value: "ABC").to_vector
+        strs = v.each_rectangle.to_a
+        expect(strs.size).to eq(19)
+        expect(strs[0].x).to be >= 0.0
+        expect(strs[0].y).to be >= 0.0
+        expect(strs[0].height).to be > 1.0
+        expect(strs[0].width).to be > 1.0
+        expect(strs[0].colour).to eq(-1)
+      end
+
+      it "exports barcode as vector of circles" do
+        v = described_class.new(value: "ABC", type: Zint::BARCODE_MAXICODE).to_vector
+        strs = v.each_circle.to_a
+        expect(strs.size).to eq(6)
+        expect(strs[0].x).to be >= 1.0
+        expect(strs[0].y).to be >= 1.0
+        expect(strs[0].diameter).to be > 5.0
+        expect(strs[0].colour).to eq(0)
+      end
+
+      it "exports barcode as vector of hexagons" do
+        v = described_class.new(value: "ABC", type: Zint::BARCODE_MAXICODE).to_vector
+        strs = v.each_hexagon.to_a
+        expect(strs.size).to be > 100
+        expect(strs[0].x).to be >= 1.0
+        expect(strs[0].y).to be >= 1.0
+        expect(strs[0].diameter).to be > 1.0
+        expect(strs[0].rotation).to eq(0)
       end
     end
 
@@ -157,6 +201,12 @@ module Zint
         barcode = described_class.new(value: "A" * 4096)
         expect { barcode.to_buffer }.to raise_error(Zint::ErrorTooLong, "Error 340: Input too long (160 character maximum)")
       end
+    end
+
+    it "can be explicit freed" do
+      barcode = described_class.new(value: "A" * 40)
+      barcode.free
+      barcode.free # second call is ignored as well as GC registration
     end
   end
 end

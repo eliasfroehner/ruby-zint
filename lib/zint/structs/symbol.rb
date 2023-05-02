@@ -1,6 +1,6 @@
 module Zint
   module Structs
-    class Symbol < FFI::Struct
+    class Symbol < FFI::ManagedStruct
       layout :symbology, :int,
         :height, :float,
         :whitespace_width, :int,
@@ -33,9 +33,14 @@ module Zint
         :alphamap, :pointer,
         :bitmap_byte_length, :uchar,
         :dot_size, :float,
-        :vector, :pointer,
+        :vector, Vector.by_ref,
         :debug, :int,
         :warn_level, :int
+
+      # @private
+      def self.release(ptr)
+        Native.ZBarcode_Delete(ptr)
+      end
     end
   end
 end

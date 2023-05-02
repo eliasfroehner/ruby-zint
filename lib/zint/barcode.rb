@@ -5,6 +5,8 @@ module Zint
   #   barcode = Zint::Barcode.new(value: "Test", type: Zint::BARCODE_QRCODE, options: {option_1: 1})
   #   barcode.to_file(path: "qr.png")
   class Barcode
+    include Native
+
     # @return [String, NilClass] Content of the barcode
     attr_accessor :value
     # @return [String, NilClass] Path to input file with content of the barcode
@@ -123,23 +125,31 @@ module Zint
         call_function(:ZBarcode_Encode_and_Buffer_Vector, zint_symbol, value, 0, rotate_angle)
       end
 
-      Structs::Vector.new(zint_symbol[:vector])
+      v = zint_symbol[:vector]
+      # Avoid garbage collection of Symbol before Vector, since the Vector is also freed by ZBarcode_Delete()
+      v.instance_variable_set(:@symbol, @zint_symbol)
+      v
+    end
+
+    # Free barcode and all memory associated with it.
+    def free
+      @zint_symbol.pointer.free
     end
 
     private
 
     def call_function(function_name, *args)
-      error_code = Zint.send(function_name.to_s, *args)
+      error_code = Native.send(function_name.to_sym, *args)
 
       if Zint::ERRORS[error_code]
-        Zint.raise_error(error_code, zint_symbol[:errtxt])
+        Native.raise_error(error_code, zint_symbol[:errtxt])
       end
 
       error_code
     end
 
     def create_symbol(type)
-      symbol = Structs::Symbol.new(Zint.ZBarcode_Create)
+      symbol = Native.ZBarcode_Create
       symbol[:symbology] = type
 
       symbol
