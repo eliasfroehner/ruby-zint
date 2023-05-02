@@ -51,9 +51,9 @@ png = ChunkyPNG::Image.new(bitmap.width, bitmap.height, ChunkyPNG::Color::TRANSP
 white = ChunkyPNG::Color("white")
 black = ChunkyPNG::Color("black")
 
-bitmap = barcode.to_buffer
+bitmap = barcode.to_bitmap
 bitmap.pixels.each do |pixel|
-  png.compose_pixel(pixel.x, pixel.y, (pixel.colour == "K") ? black : white)
+  png.compose_pixel(pixel.x, pixel.y, (pixel.colour == "1") ? black : white)
 end
 
 png.save("out.png")
