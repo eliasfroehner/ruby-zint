@@ -4,7 +4,7 @@ RSpec.describe Zint do
   end
 
   it "has a library version number" do
-    expect(Zint.library_version).to eq 21000
+    expect(Zint.library_version).to eq 21200
   end
 
   describe "errors" do

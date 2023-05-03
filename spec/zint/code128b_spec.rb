@@ -1,5 +1,5 @@
 module Zint
-  RSpec.describe Code128b do
+  RSpec.describe Code128B do
     describe "export" do
       it "export code" do
         code128b_code = described_class.new(value: "012345678912")

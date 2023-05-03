@@ -35,25 +35,27 @@ module Zint
       BARCODE_UPCA_CHK = 35 #  UPC-A + Check Digit
       BARCODE_UPCE = 37 #  UPC-E
       BARCODE_UPCE_CHK = 38 #  UPC-E + Check Digit
-      BARCODE_POSTNET = 40 #  USPS POSTNET
+      BARCODE_POSTNET = 40 # USPS (U.S. Postal Service) POSTNET
       BARCODE_MSI_PLESSEY = 47 #  MSI Plessey
       BARCODE_FIM = 49 #  Facing Identification Mark
       BARCODE_LOGMARS = 50 #  LOGMARS
       BARCODE_PHARMA = 51 #  Pharmacode One-Track
       BARCODE_PZN = 52 #  Pharmazentralnummer
       BARCODE_PHARMA_TWO = 53 #  Pharmacode Two-Track
+      BARCODE_CEPNET = 54  # Brazilian CEPNet Postal Code
       BARCODE_PDF417 = 55 #  PDF417
       BARCODE_PDF417COMP = 56 #  Compact PDF417 (Truncated PDF417)
       BARCODE_PDF417TRUNC = 56 #  Legacy
       BARCODE_MAXICODE = 57 #  MaxiCode
       BARCODE_QRCODE = 58 #  QR Code
-      BARCODE_CODE128B = 60 #  Code 128 (Subset B)
+      BARCODE_CODE128AB = 60 #  Code 128 (Suppress subset C)
+      BARCODE_CODE128B = 60 # Legacy
       BARCODE_AUSPOST = 63 #  Australia Post Standard Customer
       BARCODE_AUSREPLY = 66 #  Australia Post Reply Paid
       BARCODE_AUSROUTE = 67 #  Australia Post Routing
       BARCODE_AUSREDIRECT = 68 #  Australia Post Redirection
       BARCODE_ISBNX = 69 #  ISBN
-      BARCODE_RM4SCC = 70 #  Royal Mail 4 State
+      BARCODE_RM4SCC = 70 #  Royal Mail 4-State Customer Code
       BARCODE_DATAMATRIX = 71 #  Data Matrix (ECC200)
       BARCODE_EAN14 = 72 #  EAN-14
       BARCODE_VIN = 73 #  Vehicle Identification Number
@@ -71,7 +73,7 @@ module Zint
       BARCODE_MICROPDF417 = 84 #  MicroPDF417
       BARCODE_USPS_IMAIL = 85 #  USPS Intelligent Mail (OneCode)
       BARCODE_ONECODE = 85 #  Legacy
-      BARCODE_PLESSEY = 86 #  Plessey Code
+      BARCODE_PLESSEY = 86 #  UK Plessey
 
       #  Tbarcode 8 codes
       BARCODE_TELEPEN_NUM = 87 #  Telepen Numeric
@@ -83,7 +85,7 @@ module Zint
       BARCODE_MICROQR = 97 #  Micro QR Code
 
       #  Tbarcode 9 codes
-      BARCODE_HIBC_128 = 98 #  HIBC Code 128
+      BARCODE_HIBC_128 = 98 #  HIBC (Health Industry Barcode) Code 128
       BARCODE_HIBC_39 = 99 #  HIBC Code 39
       BARCODE_HIBC_DM = 102 #  HIBC Data Matrix
       BARCODE_HIBC_QR = 104 #  HIBC QR Code
@@ -97,7 +99,10 @@ module Zint
       BARCODE_HANXIN = 116 #  Han Xin (Chinese Sensible) Code
 
       #  Tbarcode 11 codes
-      BARCODE_MAILMARK = 121 #  Royal Mail 4-state Mailmark
+      BARCODE_MAILMARK_2D = 119 # Royal Mail 2D Mailmark (CMDM) (Data Matrix)
+      BARCODE_UPU_S10 = 120 # Universal Postal Union S10
+      BARCODE_MAILMARK_4S = 121 # Royal Mail 4-State Mailmark
+      BARCODE_MAILMARK = 121 # Legacy
 
       #  Zint specific
       BARCODE_AZRUNE = 128 #  Aztec Runes
@@ -125,6 +130,8 @@ module Zint
       BARCODE_UPNQR = 143 #  UPNQR (Univerzalnega Plačilnega Naloga QR)
       BARCODE_ULTRA = 144 #  Ultracode
       BARCODE_RMQR = 145 #  Rectangular Micro QR Code (rMQR)
+      BARCODE_BC412 = 146 # IBM BC412 (SEMI T1-95)
+      BARCODE_LAST = 146 # Max barcode number marker, not barcode
     end
   end
 end

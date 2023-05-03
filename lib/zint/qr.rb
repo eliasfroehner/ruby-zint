@@ -1,4 +1,5 @@
 module Zint
+  # QR Code
   class Qr < Barcode
     # ECC Levels
     ECC_LEVEL_L = 1

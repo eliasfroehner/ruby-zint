@@ -1,4 +1,5 @@
 module Zint
+  # Data Matrix (ECC200)
   class DataMatrix < Barcode
     # Options
     DM_NULL = 0

@@ -175,7 +175,7 @@ module Zint
       it "exports barcode as vector of circles" do
         v = described_class.new(value: "ABC", type: Zint::BARCODE_MAXICODE).to_vector
         strs = v.each_circle.to_a
-        expect(strs.size).to eq(6)
+        expect(strs.size).to eq(3)
         expect(strs[0].x).to be >= 1.0
         expect(strs[0].y).to be >= 1.0
         expect(strs[0].diameter).to be > 5.0
@@ -292,6 +292,24 @@ module Zint
         barcode.eci = 1
 
         expect(barcode.eci).to eq 1
+      end
+
+      it "sets and gets dpmm correctly" do
+        barcode.dpmm = 1
+
+        expect(barcode.dpmm).to eq 1
+      end
+
+      it "sets and gets guard_descent correctly" do
+        barcode.guard_descent = 10
+
+        expect(barcode.guard_descent).to eq 10
+      end
+
+      it "sets and gets structapp correctly" do
+        barcode.structapp = Structs::Structapp.new
+
+        expect(barcode.structapp).to be_kind_of Structs::Structapp
       end
 
       it "sets and gets text correctly" do

@@ -5,7 +5,7 @@ module Zint
     root_path = File.expand_path("../../..", __FILE__)
     prefix = FFI::Platform::LIBPREFIX.empty? ? "lib" : FFI::Platform::LIBPREFIX
     bundled_dll = File.join(root_path, "lib/#{prefix}zint.#{FFI::Platform::LIBSUFFIX}")
-    ffi_lib [bundled_dll, "libzint.so.2.10", "libzint", "zint"]
+    ffi_lib [bundled_dll, "libzint.so.2.12", "libzint", "zint"]
 
     # Error codes (API return values)
     enum :error_code, [Constants::Warnings::WARNINGS, Constants::Errors::ERRORS].map { |h| h.to_a }.flatten

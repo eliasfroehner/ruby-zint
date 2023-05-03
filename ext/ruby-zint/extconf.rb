@@ -45,11 +45,11 @@ def libzint_usable?
   m = Module.new do
     extend FFI::Library
 
-    ffi_lib(%w[libzint.so.2.10 libzint zint])
+    ffi_lib(%w[libzint.so.2.12 libzint zint])
     attach_function(:ZBarcode_Version, [], :int32)
   end
 
-  (21000...21100) === m.ZBarcode_Version
+  (21200...21300) === m.ZBarcode_Version
 rescue LoadError
   false
 end

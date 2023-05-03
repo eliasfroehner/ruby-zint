@@ -20,6 +20,7 @@ require "zint/structs/vector_hexagon"
 require "zint/structs/vector_rect"
 require "zint/structs/vector_string"
 require "zint/structs/vector"
+require "zint/structs/structapp"
 require "zint/structs/symbol"
 require "zint/native"
 
@@ -36,6 +37,7 @@ module Zint
   include Constants::Warnings
 
   # Barcode
+  autoload :Bc412, "zint/bc_412"
   autoload :Bitmap, "zint/bitmap"
   autoload :BitmapPixel, "zint/bitmap_pixel"
   autoload :Barcode, "zint/barcode"
@@ -53,12 +55,14 @@ module Zint
   autoload :C25logic, "zint/c25logic"
   autoload :C25matrix, "zint/c25matrix"
   autoload :C25standard, "zint/c25standard"
+  autoload :CepNet, "zint/cep_net"
   autoload :Channel, "zint/channel"
   autoload :Codabar, "zint/codabar"
   autoload :CodablockF, "zint/codablock_f"
   autoload :Code11, "zint/code11"
   autoload :Code128, "zint/code128"
-  autoload :Code128b, "zint/code128b"
+  autoload :Code128AB, "zint/code128ab"
+  autoload :Code128B, "zint/code128b"
   autoload :Code16k, "zint/code16k"
   autoload :Code32, "zint/code32"
   autoload :Code39, "zint/code39"
@@ -103,6 +107,8 @@ module Zint
   autoload :KoreaPost, "zint/korea_post"
   autoload :Logmars, "zint/logmars"
   autoload :Mailmark, "zint/mailmark"
+  autoload :Mailmark2D, "zint/mailmark_2d"
+  autoload :Mailmark4S, "zint/mailmark_4s"
   autoload :MaxiCode, "zint/maxi_code"
   autoload :MicroPdf417, "zint/micro_pdf417"
   autoload :MicroQr, "zint/micro_qr"
@@ -136,6 +142,7 @@ module Zint
   autoload :UpcE, "zint/upc_e"
   autoload :UpcEChk, "zint/upc_e_chk"
   autoload :Upnqr, "zint/upnqr"
+  autoload :UpuS10, "zint/upu_s10"
   autoload :UspsImail, "zint/uspsimail"
   autoload :Vin, "zint/vin"
 

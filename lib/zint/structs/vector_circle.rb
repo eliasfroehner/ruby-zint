@@ -3,8 +3,9 @@ module Zint
     class VectorCircle < FFI::Struct
       layout :x, :float,
         :y, :float,
-        :diameter, :float,
-        :colour, :int,  #  Non-zero for draw with background colour
+        :diameter, :float, # Circle diameter. Does not include width (if any)
+        :width, :float, # Width of circle perimeter (circumference). 0 for fill (disc)
+        :colour, :int,  # Non-zero for draw with background colour (else draw with foreground colour)
         :next, VectorCircle.by_ref #  Pointer to next circle
 
       # x position
