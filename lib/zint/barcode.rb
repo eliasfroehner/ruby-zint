@@ -353,6 +353,48 @@ module Zint
       @zint_symbol[:eci] = eci
     end
 
+    # Gets resolution of output in dots per mm (BMP/EMF/PCX/PNG/TIF only). Default 0 (none)
+    def dpmm
+      @zint_symbol[:dpmm]
+    end
+
+    # Sets resolution of output in dots per mm (BMP/EMF/PCX/PNG/TIF only). Default 0 (none)
+    #
+    # @param text [Float] Text of barcode
+    def dpmm=(dpmm)
+      reset_symbol
+
+      @zint_symbol[:dpmm] = dpmm
+    end
+
+    # Gets height in X-dimensions that EAN/UPC guard bars descend. Default 5
+    def guard_descent
+      @zint_symbol[:guard_descent]
+    end
+
+    # Sets height in X-dimensions that EAN/UPC guard bars descend. Default 5
+    #
+    # @param text [Float] Text of barcode
+    def guard_descent=(guard_descent)
+      reset_symbol
+
+      @zint_symbol[:guard_descent] = guard_descent
+    end
+
+    # Gets structured append info. Default structapp.count 0 (none)
+    def structapp
+      @zint_symbol[:structapp]
+    end
+
+    # Sets structured append info. Default structapp.count 0 (none)
+    #
+    # @param text [Structs::Structapp] Text of barcode
+    def structapp=(structapp)
+      reset_symbol
+
+      @zint_symbol[:structapp] = structapp
+    end
+
     # Human Readable Text, which usually consists of input data plus one more check digit. Uses UTF-8 formatting.
     def text
       @zint_symbol[:text].to_s.force_encoding(Encoding::UTF_8)
