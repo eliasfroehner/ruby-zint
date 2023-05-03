@@ -31,7 +31,9 @@ module Zint
 
     # Exports barcode to file
     #
-    # @param path [String] Path to export file
+    # @param path [String] Path to export file.
+    #                      Contains the name of the file to output a resulting barcode symbol to.
+    #                      Must end in .png, .gif, .bmp, .emf, .eps, .pcx, .svg, .tif or .txt
     # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
     def to_file(path:, rotate_angle: 0)
       @zint_symbol[:outfile] = path
@@ -219,7 +221,7 @@ module Zint
 
     # Gets foreground colour of barcode
     def fgcolour
-      @zint_symbol[:fgcolour]
+      @zint_symbol[:fgcolour].to_s
     end
 
     # Sets foreground as RGB/RGBA hexadecimal string, 6 or 8 characters, NUL-terminated
@@ -233,7 +235,7 @@ module Zint
 
     # Gets background colour of barcode
     def bgcolour
-      @zint_symbol[:bgcolour]
+      @zint_symbol[:bgcolour].to_s
     end
 
     # Sets background as RGB/RGBA hexadecimal string, 6 or 8 characters, NUL-terminated
@@ -245,9 +247,11 @@ module Zint
       @zint_symbol[:bgcolour] = bgcolour
     end
 
-    # Gets outfile of barcode
+    # Contains the name of the file to output a resulting barcode symbol to.
+    #
+    # Must end in .png, .gif, .bmp, .emf, .eps, .pcx, .svg, .tif or .txt
     def outfile
-      @zint_symbol[:outfile]
+      @zint_symbol[:outfile].to_s
     end
 
     # Gets option 1 of barcode
@@ -349,9 +353,9 @@ module Zint
       @zint_symbol[:eci] = eci
     end
 
-    # Gets text of barcode
+    # Human Readable Text, which usually consists of input data plus one more check digit. Uses UTF-8 formatting.
     def text
-      @zint_symbol[:text]
+      @zint_symbol[:text].to_s.force_encoding(Encoding::UTF_8)
     end
 
     # Sets Human Readable Text (if any), UTF-8, NUL-terminated (output only) of barcode
@@ -373,9 +377,9 @@ module Zint
       @zint_symbol[:width]
     end
 
-    # Gets primary message data for more complex symbols, with a terminating NUL, of barcode
+    # Gets primary message data for more complex symbols
     def primary
-      @zint_symbol[:primary]
+      @zint_symbol[:primary].to_s
     end
 
     # Sets primary message data (MaxiCode, Composite), NUL-terminated of barcode
@@ -406,9 +410,9 @@ module Zint
       @zint_symbol[:row_height]
     end
 
-    # Gets error text of barcode
+    # Gets error message in the event that an error occurred
     def errtxt
-      @zint_symbol[:errtxt]
+      @zint_symbol[:errtxt].to_s.force_encoding(Encoding::UTF_8)
     end
 
     # Gets bitmap width of barcode
