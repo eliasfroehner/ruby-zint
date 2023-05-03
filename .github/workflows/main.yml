@@ -41,10 +41,17 @@ jobs:
           apt-get: 'libpng-dev' # Ubuntu
           brew: 'cmake libpng qt5' # macOS
 
-      - name: Ubuntu install zint
+      - name: Ubuntu build zint
         if: matrix.os == 'ubuntu' && matrix.builtin != 'true'
         run: |
-          sudo apt update && sudo apt install -y zint
+          wget https://github.com/zint/zint/archive/refs/tags/2.12.0.zip
+          unzip 2.12.0.zip
+          cd zint-2.12.0
+          mkdir build
+          cd build
+          cmake ..
+          make
+          sudo make install
 
       - name: macOS build zint
         if: matrix.os == 'macos' && matrix.builtin != 'true'
