@@ -141,6 +141,13 @@ module Zint
         expect(vector_struct.is_a?(Structs::Vector)).to be true
       end
 
+      it "exports barcode as vector with readable attributes" do
+        v = described_class.new(value: "ABC").to_vector
+
+        expect(v.height.round(2)).to eq(118.9)
+        expect(v.width.round(2)).to eq(136.0)
+      end
+
       it "exports barcode as vector of strings" do
         v = described_class.new(value: "ABC").to_vector
         strs = v.each_string.to_a
