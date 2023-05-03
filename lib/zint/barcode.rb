@@ -124,7 +124,7 @@ module Zint
       @zint_symbol[:symbology]
     end
 
-    # Sets type of barcode
+    # Sets symbol to use (see BARCODE_XXX below)
     #
     # @param type [Integer] Type of barcode
     def symbology=(type)
@@ -138,7 +138,7 @@ module Zint
       @zint_symbol[:height]
     end
 
-    # Sets height of barcode
+    # Sets height in X-dimensions (ignored for fixed-width barcodes)
     #
     # @param height [Float] Height of barcode
     def height=(height)
@@ -147,12 +147,12 @@ module Zint
       @zint_symbol[:height] = height
     end
 
-    # Gets scale of barcode
+    # Gets scale factor of barcode
     def scale
       @zint_symbol[:scale]
     end
 
-    # Sets scale of barcode
+    # Sets scale factor when printing barcode
     #
     # @param scale [Float] Scale of barcode
     def scale=(scale)
@@ -161,12 +161,12 @@ module Zint
       @zint_symbol[:scale] = scale
     end
 
-    # Gets whitespace width of barcode
+    # Gets width in X-dimensions of whitespace to left & right of barcode
     def whitespace_width
       @zint_symbol[:whitespace_width]
     end
 
-    # Sets whitespace width of barcode
+    # Sets width in X-dimensions of whitespace to left & right of barcode
     #
     # @param whitespace width [Integer] Whitespace width of barcode
     def whitespace_width=(whitespace_width)
@@ -175,12 +175,12 @@ module Zint
       @zint_symbol[:whitespace_width] = whitespace_width
     end
 
-    # Gets whitespace height of barcode
+    # Gets height in X-dimensions of whitespace above & below the barcode
     def whitespace_height
       @zint_symbol[:whitespace_height]
     end
 
-    # Sets whitespace height of barcode
+    # Sets height in X-dimensions of whitespace above & below the barcode
     #
     # @param whitespace height [Integer] Whitespace height of barcode
     def whitespace_height=(whitespace_height)
@@ -189,12 +189,12 @@ module Zint
       @zint_symbol[:whitespace_height] = whitespace_height
     end
 
-    # Gets border width of barcode
+    # Gets size of border in X-dimensions
     def border_width
       @zint_symbol[:border_width]
     end
 
-    # Sets border width of barcode
+    # Sets size of border in X-dimensions
     #
     # @param border width [Integer] Border width of barcode
     def border_width=(border_width)
@@ -208,7 +208,7 @@ module Zint
       @zint_symbol[:output_options]
     end
 
-    # Sets output options of barcode
+    # Set various output parameters (bind, box etc, see below) of barcode
     #
     # @param output options [Integer] Output options of barcode
     def output_options=(output_options)
@@ -222,7 +222,7 @@ module Zint
       @zint_symbol[:fgcolour]
     end
 
-    # Sets foreground colour of barcode
+    # Sets foreground as RGB/RGBA hexadecimal string, 6 or 8 characters, NUL-terminated
     #
     # @param fgcolour [String] Foreground colour of barcode
     def fgcolour=(fgcolour)
@@ -236,7 +236,7 @@ module Zint
       @zint_symbol[:bgcolour]
     end
 
-    # Sets background colour of barcode
+    # Sets background as RGB/RGBA hexadecimal string, 6 or 8 characters, NUL-terminated
     #
     # @param bgcolour [String] Background color of barcode
     def bgcolour=(bgcolour)
@@ -255,7 +255,7 @@ module Zint
       @zint_symbol[:option_1]
     end
 
-    # Sets option 1 of barcode
+    # Sets option 1 (symbol-specific options (see "../docs/manual.txt"))
     #
     # @param option_1 [Integer] Option 1 of barcode
     def option_1=(option_1)
@@ -269,7 +269,7 @@ module Zint
       @zint_symbol[:option_2]
     end
 
-    # Sets option 2 of barcode
+    # Sets option 2 (symbol-specific options) of barcode
     #
     # @param option 2 [Integer] Option 2 of barcode
     def option_2=(option_2)
@@ -283,7 +283,7 @@ module Zint
       @zint_symbol[:option_3]
     end
 
-    # Sets option 3 of barcode
+    # Sets option 3 (symbol-specific options) of barcode
     #
     # @param option 3 [Integer] Option 3 of barcode
     def option_3=(option_3)
@@ -298,7 +298,7 @@ module Zint
     end
 
     # Sets show_hrt of barcode
-    # Set to 0 to hide text.
+    # show = 1 or hide = 0 Human Readable Text. Default is show (1)
     #
     # @param show_hrt [Integer] show_hrt of barcode
     def show_hrt=(show_hrt)
@@ -312,7 +312,7 @@ module Zint
       @zint_symbol[:fontsize]
     end
 
-    # Sets font size of barcode
+    # Sets font size of barcode (Unused)
     #
     # @param font size [Integer] Font size of barcode
     def fontsize=(fontsize)
@@ -326,7 +326,7 @@ module Zint
       @zint_symbol[:input_mode]
     end
 
-    # Sets input mode of barcode
+    # Sets encoding of input data (see DATA_MODE etc below). Default DATA_MODE
     #
     # @param input_mode [Integer] Input mode of barcode
     def input_mode=(input_mode)
@@ -340,7 +340,7 @@ module Zint
       @zint_symbol[:eci]
     end
 
-    # Sets ECI of barcode
+    # Sets extended Channel Interpretation. Default 0 (none)
     #
     # @param eci [Integer] ECI of barcode
     def eci=(eci)
@@ -354,7 +354,7 @@ module Zint
       @zint_symbol[:text]
     end
 
-    # Sets text of barcode
+    # Sets Human Readable Text (if any), UTF-8, NUL-terminated (output only) of barcode
     #
     # @param text [String] Text of barcode
     def text=(text)
@@ -378,7 +378,7 @@ module Zint
       @zint_symbol[:primary]
     end
 
-    # Sets primary message of barcode
+    # Sets primary message data (MaxiCode, Composite), NUL-terminated of barcode
     #
     # @param primary [String] Primary of barcode
     def primary=(primary)
@@ -387,12 +387,12 @@ module Zint
       @zint_symbol[:primary] = primary
     end
 
-    # Gets encoded_data of barcode
+    # Gets encoded data of barcode
     def encoded_data
       @zint_symbol[:encoded_data]
     end
 
-    # Sets encoded_data of barcode
+    # Sets encoded data (output only). Allows for rows of 1144 modules of barcode
     #
     # @param encoded_data [String] Encoded data of barcode
     def encoded_data=(encoded_data)
@@ -431,7 +431,7 @@ module Zint
       @zint_symbol[:dot_size]
     end
 
-    # Sets dot size of barcode
+    # Sets size of dots used in BARCODE_DOTTY_MODE
     #
     # @param dot size [Float] Dot size of barcode
     def dot_size=(dot_size)
@@ -440,12 +440,12 @@ module Zint
       @zint_symbol[:dot_size] = dot_size
     end
 
-    # Gets debug level of barcode
+    # Gets debugging flags
     def debug
       @zint_symbol[:debug]
     end
 
-    # Sets debug level of barcode
+    # Sets debugging flags
     #
     # @param debug [Integer] Debug level of barcode
     def debug=(debug)
@@ -459,7 +459,7 @@ module Zint
       @zint_symbol[:warn_level]
     end
 
-    # Sets warn level of barcode
+    # Sets warn level (affects error/warning value returned by Zint API (see WARN_XXX below)) of barcode
     #
     # @param warn_level [Integer] Warn level of barcode
     def warn_level=(warn_level)
