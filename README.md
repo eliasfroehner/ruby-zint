@@ -7,10 +7,15 @@ This gem is a Ruby FFI binding for the [libzint](http://www.zint.org.uk) barcode
 See the [documentation](https://rubydoc.info/github/api-walker/ruby-zint) for a full API description.
 
 ## Installation
+
+By default ruby-zint first tries to use libzint installed on the system.
+If libzint can't be found or if it isn't a supported version, then the zint version, bundled into the gem, is compiled and used.
+Both install methods can be enforced by using `--enable-system-libzint` or `--disable-system-libzint` options, see below.
+
 ### With libzint source code (recommended)
 First install CMake with your package manager (e. g. `apt install cmake`).
 
-Afterwards install the gem:
+Afterwards install the gem and force builtin libzint:
 
 ```
 $ gem install ruby-zint -- --disable-system-libzint
@@ -24,13 +29,20 @@ Other platforms require building [from source](https://www.zint.org.uk/manual/ch
 
 **NOTE:** It is assumed that you are using libzint with the version [2.10](https://sourceforge.net/projects/zint/files/zint/2.10.0/).
 
-Then install this gem with:
+Then install this gem and enforce system libzint:
 
 ```
-$ gem install ruby-zint
+$ gem install ruby-zint -- --enable-system-libzint
 ```
 
-Or include `gem "ruby-zint"` in your Gemfile.
+### Gemfile
+
+Include `gem "ruby-zint"` in your Gemfile.
+Optionally set the install option by running bundler like so:
+
+```
+bundle config build.ruby-zint --enable-system-libzint
+```
 
 ## Usage
 
