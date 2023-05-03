@@ -233,17 +233,17 @@ module Zint
       it "sets and gets fgcolour correctly" do
         barcode.fgcolour = "00ff00"
 
-        expect(barcode.fgcolour.to_s).to eq "00ff00"
+        expect(barcode.fgcolour).to eq "00ff00"
       end
 
       it "sets and gets bgcolour correctly" do
         barcode.bgcolour = "00ff00"
 
-        expect(barcode.bgcolour.to_s).to eq "00ff00"
+        expect(barcode.bgcolour).to eq "00ff00"
       end
 
       it "gets outfile correctly" do
-        expect(barcode.outfile.to_s).to eq "out.png"
+        expect(barcode.outfile).to eq "out.png"
       end
 
       it "sets and gets scale correctly" do
@@ -295,9 +295,15 @@ module Zint
       end
 
       it "sets and gets text correctly" do
-        barcode.text = "text"
+        barcode.text = "Täxt"
 
-        expect(barcode.text.to_s).to eq "text"
+        expect(barcode.text).to eq "Täxt"
+      end
+
+      it "provides text with checksum" do
+        barcode = Zint::Eanx.new(value: "123456789012")
+        barcode.to_buffer
+        expect(barcode.text).to eq "1234567890128"
       end
 
       it "gets rows correctly" do
@@ -311,7 +317,7 @@ module Zint
       it "sets and gets primary correctly" do
         barcode.primary = "primary text"
 
-        expect(barcode.primary.to_s).to eq "primary text"
+        expect(barcode.primary).to eq "primary text"
       end
 
       it "sets and gets encoded_data correctly" do
@@ -325,7 +331,7 @@ module Zint
       end
 
       it "gets errtxt correctly" do
-        expect(barcode.errtxt.to_s).to eq ""
+        expect(barcode.errtxt).to eq ""
       end
 
       it "gets bitmap_width correctly" do
