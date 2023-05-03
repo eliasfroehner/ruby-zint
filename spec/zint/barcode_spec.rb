@@ -193,13 +193,175 @@ module Zint
       end
     end
 
-    describe "#type=" do
-      it "changes symbology correctly" do
-        code_128_svg_file = barcode.to_memory_file(extension: ".svg")
-        barcode.type = Zint::BARCODE_CODE39
-        code_128b_svg_file = barcode.to_memory_file(extension: ".svg")
+    describe "attributes" do
+      it "sets and gets symbology correctly" do
+        barcode.symbology = Zint::BARCODE_CODE39
 
-        expect(code_128_svg_file).not_to eq code_128b_svg_file
+        expect(barcode.symbology).to eq Zint::BARCODE_CODE39
+      end
+
+      it "sets and gets height correctly" do
+        barcode.height = 128
+
+        expect(barcode.height).to eq 128
+      end
+
+      it "sets and gets whitespace_width correctly" do
+        barcode.whitespace_width = 1
+
+        expect(barcode.whitespace_width).to eq 1
+      end
+
+      it "sets and gets whitespace_height correctly" do
+        barcode.whitespace_height = 1
+
+        expect(barcode.whitespace_height).to eq 1
+      end
+
+      it "sets and gets border_width correctly" do
+        barcode.border_width = 1
+
+        expect(barcode.border_width).to eq 1
+      end
+
+      it "sets and gets output_options correctly" do
+        barcode.output_options = 0
+
+        expect(barcode.output_options).to eq 0
+      end
+
+      it "sets and gets fgcolour correctly" do
+        barcode.fgcolour = "00ff00"
+
+        expect(barcode.fgcolour.to_s).to eq "00ff00"
+      end
+
+      it "sets and gets bgcolour correctly" do
+        barcode.bgcolour = "00ff00"
+
+        expect(barcode.bgcolour.to_s).to eq "00ff00"
+      end
+
+      it "gets outfile correctly" do
+        expect(barcode.outfile.to_s).to eq "out.png"
+      end
+
+      it "sets and gets scale correctly" do
+        barcode.scale = 1
+
+        expect(barcode.scale).to eq 1
+      end
+
+      it "sets and gets option_1 correctly" do
+        barcode.option_1 = 1
+
+        expect(barcode.option_1).to eq 1
+      end
+
+      it "sets and gets option_2 correctly" do
+        barcode.option_2 = 1
+
+        expect(barcode.option_2).to eq 1
+      end
+
+      it "sets and gets option_3 correctly" do
+        barcode.option_3 = 1
+
+        expect(barcode.option_3).to eq 1
+      end
+
+      it "sets and gets show_hrt correctly" do
+        barcode.show_hrt = 1
+
+        expect(barcode.show_hrt).to eq 1
+      end
+
+      it "sets and gets fontsize correctly" do
+        barcode.fontsize = 1
+
+        expect(barcode.fontsize).to eq 1
+      end
+
+      it "sets and gets input_mode correctly" do
+        barcode.input_mode = 1
+
+        expect(barcode.input_mode).to eq 1
+      end
+
+      it "sets and gets eci correctly" do
+        barcode.eci = 1
+
+        expect(barcode.eci).to eq 1
+      end
+
+      it "sets and gets text correctly" do
+        barcode.text = "text"
+
+        expect(barcode.text.to_s).to eq "text"
+      end
+
+      it "gets rows correctly" do
+        expect(barcode.rows).to eq 0
+      end
+
+      it "gets width correctly" do
+        expect(barcode.width).to eq 0
+      end
+
+      it "sets and gets primary correctly" do
+        barcode.primary = "primary text"
+
+        expect(barcode.primary.to_s).to eq "primary text"
+      end
+
+      it "sets and gets encoded_data correctly" do
+        barcode.encoded_data = "encoded_data"
+
+        expect(barcode.encoded_data.to_s).to eq "encoded_data"
+      end
+
+      it "sets and gets row_height correctly" do
+        expect(barcode.row_height.to_a).to be_kind_of Array
+      end
+
+      it "gets errtxt correctly" do
+        expect(barcode.errtxt.to_s).to eq ""
+      end
+
+      it "gets bitmap_width correctly" do
+        barcode.to_buffer
+
+        expect(barcode.bitmap_width).to eq 158
+      end
+
+      it "gets bitmap_height correctly" do
+        barcode.to_buffer
+
+        expect(barcode.bitmap_height).to eq 116
+      end
+
+      it "gets bitmap_byte_length correctly" do
+        barcode.to_buffer
+
+        expect(barcode.bitmap_byte_length).to eq 0
+      end
+
+      it "sets and gets dot_size correctly" do
+        barcode.dot_size = 1
+
+        expect(barcode.dot_size).to eq 1
+      end
+
+      it "sets and gets debug correctly" do
+        barcode.debug = 1
+
+        expect(barcode.debug).to eq 1
+      end
+
+      it "sets and gets warn_level correctly" do
+        barcode.warn_level = 1
+
+        expect(barcode.warn_level).to eq 1
       end
     end
 
