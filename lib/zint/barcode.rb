@@ -14,9 +14,9 @@ module Zint
 
     # @param value [String, NilClass] Content of the barcode
     # @param input_file [String, NilClass] Path to input file with content of the barcode
-    # @param type [Integer] Type of barcode
-    # @param options [Hash] Specific options for Zint symbol
-    def initialize(value: nil, input_file: nil, type: Zint::BARCODE_CODE128, symbology: type, **kwargs)
+    # @param symbology [Integer] Type of barcode
+    # @param kwargs [Hash] Specific options for zint symbol (height, scale, ...)
+    def initialize(value: nil, input_file: nil, symbology: Zint::BARCODE_CODE128, **kwargs)
       raise ArgumentError, "value or input_file must be given!" if value&.empty? && input_file&.empty?
       raise ArgumentError, "input_file not found!" if input_file && !File.exist?(input_file)
 

@@ -79,7 +79,7 @@ module Zint
       it "exports colored barcode to buffer from value" do
         require "digest/md5"
 
-        bitmap = described_class.new(value: "Test", type: Zint::BARCODE_ULTRA).to_bitmap
+        bitmap = described_class.new(value: "Test", symbology: Zint::BARCODE_ULTRA).to_bitmap
 
         require "chunky_png"
         png = ChunkyPNG::Image.new(bitmap.width, bitmap.height, ChunkyPNG::Color::TRANSPARENT)
@@ -173,7 +173,7 @@ module Zint
       end
 
       it "exports barcode as vector of circles" do
-        v = described_class.new(value: "ABC", type: Zint::BARCODE_MAXICODE).to_vector
+        v = described_class.new(value: "ABC", symbology: Zint::BARCODE_MAXICODE).to_vector
         strs = v.each_circle.to_a
         expect(strs.size).to eq(3)
         expect(strs[0].x).to be >= 1.0
@@ -183,7 +183,7 @@ module Zint
       end
 
       it "exports barcode as vector of hexagons" do
-        v = described_class.new(value: "ABC", type: Zint::BARCODE_MAXICODE).to_vector
+        v = described_class.new(value: "ABC", symbology: Zint::BARCODE_MAXICODE).to_vector
         strs = v.each_hexagon.to_a
         expect(strs.size).to be > 100
         expect(strs[0].x).to be >= 1.0
