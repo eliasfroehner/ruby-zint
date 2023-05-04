@@ -1,0 +1,9 @@
+--readme          README.md
+--title           'Ruby FFI binding for libzint'
+--exclude         '/ext.ruby-zint/'
+--no-private
+--charset utf-8
+lib/**/*.rb
+-
+README.md
+LICENSE.txt
