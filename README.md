@@ -107,4 +107,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/api-wa
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Credits
-The project is based on the work and ideas of Angel Pizarro's [zint](https://github.com/delagoya/zint).
+The project is based on the work and ideas of Angel Pizarro's [zint](https://github.com/delagoya/zint). I would also like to say a big thank you to [Lars Kanis](https://github.com/larskanis) for his great contributions.
