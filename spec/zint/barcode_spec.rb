@@ -390,9 +390,14 @@ module Zint
     end
 
     describe "error handling" do
-      it "raises matching error" do
+      it "raises matching error at .to_buffer" do
         barcode = described_class.new(value: "A" * 4096)
         expect { barcode.to_buffer }.to raise_error(Zint::ErrorTooLong, "Error 340: Input too long (160 character maximum)")
+      end
+
+      it "raises matching error at .to_vector" do
+        barcode = described_class.new(value: "A" * 4096)
+        expect { barcode.to_vector }.to raise_error(Zint::ErrorTooLong, "Error 340: Input too long (160 character maximum)")
       end
     end
 
