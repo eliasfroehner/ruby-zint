@@ -1,8 +1,8 @@
 module Zint
   # Telepen Alpha
   class Telepen < Barcode
-    def initialize(value: nil, input_file: nil, options: {})
-      super(value: value, input_file: input_file, type: Zint::BARCODE_TELEPEN, options: options)
+    def initialize(value: nil, input_file: nil, **kwargs)
+      super(value: value, input_file: input_file, symbology: Zint::BARCODE_TELEPEN, **kwargs)
     end
   end
 end
