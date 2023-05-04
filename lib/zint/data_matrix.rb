@@ -10,10 +10,10 @@ module Zint
     DM_EDIFACT = 5
     DM_BASE256 = 6
 
-    def initialize(value: nil, input_file: nil, type: Zint::BARCODE_DATAMATRIX, options: {})
-      raise ArgumentError, "Invalid type for DataMatrix code" unless [Zint::BARCODE_DATAMATRIX, Zint::BARCODE_HIBC_DM].include?(type)
+    def initialize(value: nil, input_file: nil, type: Zint::BARCODE_DATAMATRIX, symbology: type, **kwargs)
+      raise ArgumentError, "Invalid symbology for DataMatrix code" unless [Zint::BARCODE_DATAMATRIX, Zint::BARCODE_HIBC_DM].include?(symbology)
 
-      super(value: value, input_file: input_file, type: type, options: {option_3: Zint::DM_SQUARE}.merge(options))
+      super(value: value, input_file: input_file, symbology: symbology, option_3: Zint::DM_SQUARE, **kwargs)
     end
   end
 end
