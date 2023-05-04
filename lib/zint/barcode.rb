@@ -171,7 +171,7 @@ module Zint
 
     # Sets width in X-dimensions of whitespace to left & right of barcode
     #
-    # @param whitespace width [Integer] Whitespace width of barcode
+    # @param whitespace_width [Integer] Whitespace width of barcode
     def whitespace_width=(whitespace_width)
       reset_symbol
 
@@ -185,7 +185,7 @@ module Zint
 
     # Sets height in X-dimensions of whitespace above & below the barcode
     #
-    # @param whitespace height [Integer] Whitespace height of barcode
+    # @param whitespace_height [Integer] Whitespace height of barcode
     def whitespace_height=(whitespace_height)
       reset_symbol
 
@@ -199,7 +199,7 @@ module Zint
 
     # Sets size of border in X-dimensions
     #
-    # @param border width [Integer] Border width of barcode
+    # @param border_width [Integer] Border width of barcode
     def border_width=(border_width)
       reset_symbol
 
@@ -213,7 +213,7 @@ module Zint
 
     # Set various output parameters (bind, box etc, see below) of barcode
     #
-    # @param output options [Integer] Output options of barcode
+    # @param output_options [Integer] Output options of barcode
     def output_options=(output_options)
       reset_symbol
 
@@ -276,7 +276,7 @@ module Zint
 
     # Sets option 2 (symbol-specific options) of barcode
     #
-    # @param option 2 [Integer] Option 2 of barcode
+    # @param option_2 [Integer] Option 2 of barcode
     def option_2=(option_2)
       reset_symbol
 
@@ -290,7 +290,7 @@ module Zint
 
     # Sets option 3 (symbol-specific options) of barcode
     #
-    # @param option 3 [Integer] Option 3 of barcode
+    # @param option_3 [Integer] Option 3 of barcode
     def option_3=(option_3)
       reset_symbol
 
@@ -319,7 +319,7 @@ module Zint
 
     # Sets font size of barcode (Unused)
     #
-    # @param font size [Integer] Font size of barcode
+    # @param fontsize [Integer] Font size of barcode
     def fontsize=(fontsize)
       reset_symbol
 
@@ -361,7 +361,7 @@ module Zint
 
     # Sets resolution of output in dots per mm (BMP/EMF/PCX/PNG/TIF only). Default 0 (none)
     #
-    # @param text [Float] Text of barcode
+    # @param dpmm [Float] Resolution of output in dots per mm
     def dpmm=(dpmm)
       reset_symbol
 
@@ -375,7 +375,7 @@ module Zint
 
     # Sets height in X-dimensions that EAN/UPC guard bars descend. Default 5
     #
-    # @param text [Float] Text of barcode
+    # @param guard_descent [Float] Height in X-dimensions that EAN/UPC guard bars descend
     def guard_descent=(guard_descent)
       reset_symbol
 
@@ -389,7 +389,7 @@ module Zint
 
     # Sets structured append info. Default structapp.count 0 (none)
     #
-    # @param text [Structs::Structapp] Text of barcode
+    # @param structapp [Structs::Structapp] Structured append info
     def structapp=(structapp)
       reset_symbol
 
@@ -480,7 +480,7 @@ module Zint
 
     # Sets size of dots used in BARCODE_DOTTY_MODE
     #
-    # @param dot size [Float] Dot size of barcode
+    # @param dot_size [Float] Dot size of barcode
     def dot_size=(dot_size)
       reset_symbol
 
