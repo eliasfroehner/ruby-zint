@@ -7,6 +7,8 @@ module Zint
   class Barcode
     include Native
 
+    class AlreadyGenerated < Error; end
+
     # @return [String, NilClass] Content of the barcode
     attr_accessor :value
     # @return [String, NilClass] Path to input file with content of the barcode
@@ -37,6 +39,9 @@ module Zint
     #                      Must end in .png, .gif, .bmp, .emf, .eps, .pcx, .svg, .tif or .txt
     # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
     def to_file(path:, rotate_angle: 0)
+      unless outfile == 'out.png'
+        raise AlreadyGenerated, "to_file was already executed"
+      end
       @zint_symbol[:outfile] = path
 
       if input_file
@@ -70,6 +75,9 @@ module Zint
     # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
     # @return [String] Exported barcode buffer
     def to_buffer(rotate_angle: 0)
+      unless @zint_symbol[:bitmap].null?
+        raise AlreadyGenerated, "to_vector was already executed"
+      end
       @zint_symbol[:output_options] = Zint::OUT_BUFFER_INTERMEDIATE
 
       if input_file
@@ -103,6 +111,9 @@ module Zint
     # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
     # @return [Zint::Structs::Vector] Vector data of barcode
     def to_vector(rotate_angle: 0)
+      unless @zint_symbol[:vector].pointer.null?
+        raise AlreadyGenerated, "to_vector was already executed"
+      end
       if input_file
         call_function(:ZBarcode_Encode_File_and_Buffer_Vector, @zint_symbol, input_file, rotate_angle)
       else
@@ -116,6 +127,9 @@ module Zint
     end
 
     # Free barcode and all memory associated with it.
+    #
+    # Note: This method is dangerous insofar, that previously exported vectors (by #to_vector ) are no longer usable and any access to them will result in a segfault.
+    # It is better to not call this method and leave cleaning up to the garbage collector.
     def free
       @zint_symbol.pointer.free
     end
@@ -131,8 +145,6 @@ module Zint
     #
     # @param type [Integer] Type of barcode
     def symbology=(type)
-      reset_symbol
-
       @zint_symbol[:symbology] = type
     end
 
@@ -145,8 +157,6 @@ module Zint
     #
     # @param height [Float] Height of barcode
     def height=(height)
-      reset_symbol
-
       @zint_symbol[:height] = height
     end
 
@@ -159,8 +169,6 @@ module Zint
     #
     # @param scale [Float] Scale of barcode
     def scale=(scale)
-      reset_symbol
-
       @zint_symbol[:scale] = scale
     end
 
@@ -173,8 +181,6 @@ module Zint
     #
     # @param whitespace_width [Integer] Whitespace width of barcode
     def whitespace_width=(whitespace_width)
-      reset_symbol
-
       @zint_symbol[:whitespace_width] = whitespace_width
     end
 
@@ -187,8 +193,6 @@ module Zint
     #
     # @param whitespace_height [Integer] Whitespace height of barcode
     def whitespace_height=(whitespace_height)
-      reset_symbol
-
       @zint_symbol[:whitespace_height] = whitespace_height
     end
 
@@ -201,8 +205,6 @@ module Zint
     #
     # @param border_width [Integer] Border width of barcode
     def border_width=(border_width)
-      reset_symbol
-
       @zint_symbol[:border_width] = border_width
     end
 
@@ -215,8 +217,6 @@ module Zint
     #
     # @param output_options [Integer] Output options of barcode
     def output_options=(output_options)
-      reset_symbol
-
       @zint_symbol[:output_options] = output_options
     end
 
@@ -229,8 +229,6 @@ module Zint
     #
     # @param fgcolour [String] Foreground colour of barcode
     def fgcolour=(fgcolour)
-      reset_symbol
-
       @zint_symbol[:fgcolour] = fgcolour
     end
 
@@ -243,8 +241,6 @@ module Zint
     #
     # @param bgcolour [String] Background color of barcode
     def bgcolour=(bgcolour)
-      reset_symbol
-
       @zint_symbol[:bgcolour] = bgcolour
     end
 
@@ -264,8 +260,6 @@ module Zint
     #
     # @param option_1 [Integer] Option 1 of barcode
     def option_1=(option_1)
-      reset_symbol
-
       @zint_symbol[:option_1] = option_1
     end
 
@@ -278,8 +272,6 @@ module Zint
     #
     # @param option_2 [Integer] Option 2 of barcode
     def option_2=(option_2)
-      reset_symbol
-
       @zint_symbol[:option_2] = option_2
     end
 
@@ -292,8 +284,6 @@ module Zint
     #
     # @param option_3 [Integer] Option 3 of barcode
     def option_3=(option_3)
-      reset_symbol
-
       @zint_symbol[:option_3] = option_3
     end
 
@@ -307,8 +297,6 @@ module Zint
     #
     # @param show_hrt [Integer] show_hrt of barcode
     def show_hrt=(show_hrt)
-      reset_symbol
-
       @zint_symbol[:show_hrt] = show_hrt
     end
 
@@ -321,8 +309,6 @@ module Zint
     #
     # @param fontsize [Integer] Font size of barcode
     def fontsize=(fontsize)
-      reset_symbol
-
       @zint_symbol[:fontsize] = fontsize
     end
 
@@ -335,8 +321,6 @@ module Zint
     #
     # @param input_mode [Integer] Input mode of barcode
     def input_mode=(input_mode)
-      reset_symbol
-
       @zint_symbol[:input_mode] = input_mode
     end
 
@@ -349,8 +333,6 @@ module Zint
     #
     # @param eci [Integer] ECI of barcode
     def eci=(eci)
-      reset_symbol
-
       @zint_symbol[:eci] = eci
     end
 
@@ -363,8 +345,6 @@ module Zint
     #
     # @param dpmm [Float] Resolution of output in dots per mm
     def dpmm=(dpmm)
-      reset_symbol
-
       @zint_symbol[:dpmm] = dpmm
     end
 
@@ -377,8 +357,6 @@ module Zint
     #
     # @param guard_descent [Float] Height in X-dimensions that EAN/UPC guard bars descend
     def guard_descent=(guard_descent)
-      reset_symbol
-
       @zint_symbol[:guard_descent] = guard_descent
     end
 
@@ -391,8 +369,6 @@ module Zint
     #
     # @param structapp [Structs::Structapp] Structured append info
     def structapp=(structapp)
-      reset_symbol
-
       @zint_symbol[:structapp] = structapp
     end
 
@@ -405,8 +381,6 @@ module Zint
     #
     # @param text [String] Text of barcode
     def text=(text)
-      reset_symbol
-
       @zint_symbol[:text] = text
     end
 
@@ -429,8 +403,6 @@ module Zint
     #
     # @param primary [String] Primary of barcode
     def primary=(primary)
-      reset_symbol
-
       @zint_symbol[:primary] = primary
     end
 
@@ -443,8 +415,6 @@ module Zint
     #
     # @param encoded_data [String] Encoded data of barcode
     def encoded_data=(encoded_data)
-      reset_symbol
-
       @zint_symbol[:encoded_data] = encoded_data
     end
 
@@ -482,8 +452,6 @@ module Zint
     #
     # @param dot_size [Float] Dot size of barcode
     def dot_size=(dot_size)
-      reset_symbol
-
       @zint_symbol[:dot_size] = dot_size
     end
 
@@ -496,8 +464,6 @@ module Zint
     #
     # @param debug [Integer] Debug level of barcode
     def debug=(debug)
-      reset_symbol
-
       @zint_symbol[:debug] = debug
     end
 
@@ -510,8 +476,6 @@ module Zint
     #
     # @param warn_level [Integer] Warn level of barcode
     def warn_level=(warn_level)
-      reset_symbol
-
       @zint_symbol[:warn_level] = warn_level
     end
 

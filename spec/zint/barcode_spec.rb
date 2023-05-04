@@ -57,6 +57,11 @@ module Zint
         expect(Digest::MD5.file(buffer_outfile).hexdigest).to eq Digest::MD5.file("spec/fixtures/buffer.png").hexdigest
       end
 
+      it "exports barcode to bitmap only once" do
+        barcode.to_bitmap
+        expect{ barcode.to_bitmap }.to raise_error(Zint::Barcode::AlreadyGenerated)
+      end
+
       it "exports barcode to bitmap object from input file" do
         require "digest/md5"
 
@@ -129,10 +134,20 @@ module Zint
         expect(bitmap).to eq expected_bitmap
       end
 
+      it "exports barcode to buffer only once" do
+        barcode.to_buffer
+        expect{ barcode.to_buffer }.to raise_error(Zint::Barcode::AlreadyGenerated)
+      end
+
       it "exports barcode as vector from given value" do
         vector_struct = barcode.to_vector
 
         expect(vector_struct.is_a?(Structs::Vector)).to be true
+      end
+
+      it "exports barcode to vector only once" do
+        barcode.to_vector
+        expect{ barcode.to_vector }.to raise_error(Zint::Barcode::AlreadyGenerated)
       end
 
       it "exports barcode as vector from input file" do
@@ -194,52 +209,67 @@ module Zint
     end
 
     describe "attributes" do
-      it "sets and gets symbology correctly" do
-        barcode.symbology = Zint::BARCODE_CODE39
+      it "sets and gets value" do
+        barcode = Zint::Eanx.new value: "1234567"
+        expect(barcode.value).to eq "1234567"
 
-        expect(barcode.symbology).to eq Zint::BARCODE_CODE39
+        barcode = Zint::Eanx.new
+        barcode.value = "2345678"
+        expect(barcode.value).to eq "2345678"
+      end
+
+      it "sets and gets input_file" do
+        barcode = Zint::Eanx.new
+        barcode.input_file = "non-existant"
+        expect(barcode.input_file).to eq "non-existant"
+      end
+
+      it "sets and gets symbology correctly" do
+        bc = Zint::Barcode.new symbology: Zint::BARCODE_CODE39
+
+        expect(bc.symbology).to eq Zint::BARCODE_CODE39
       end
 
       it "sets and gets height correctly" do
-        barcode.height = 128
+        bc = Zint::Barcode.new height: 128
 
-        expect(barcode.height).to eq 128
+        expect(bc.height).to eq 128
       end
 
       it "sets and gets whitespace_width correctly" do
-        barcode.whitespace_width = 1
+        bc = Zint::Barcode.new whitespace_width: 1
 
-        expect(barcode.whitespace_width).to eq 1
+        expect(bc.whitespace_width).to eq 1
       end
 
       it "sets and gets whitespace_height correctly" do
-        barcode.whitespace_height = 1
+        bc = Zint::Barcode.new whitespace_height: 1
 
-        expect(barcode.whitespace_height).to eq 1
+        expect(bc.whitespace_height).to eq 1
       end
 
       it "sets and gets border_width correctly" do
-        barcode.border_width = 1
+        bc = Zint::Barcode.new border_width: 1
 
-        expect(barcode.border_width).to eq 1
+        expect(bc.border_width).to eq 1
       end
 
       it "sets and gets output_options correctly" do
-        barcode.output_options = 0
+        bc = Zint::Barcode.new output_options: 0
 
-        expect(barcode.output_options).to eq 0
+        expect(bc.output_options).to eq 0
       end
 
       it "sets and gets fgcolour correctly" do
-        barcode.fgcolour = "00ff00"
+        bc = Zint::Barcode.new fgcolour: "00ff00"
 
-        expect(barcode.fgcolour).to eq "00ff00"
+        expect(bc.fgcolour).to eq "00ff00"
       end
 
       it "sets and gets bgcolour correctly" do
-        barcode.bgcolour = "00ff00"
+        bc = Zint::Barcode.new bgcolour: "00ff00"
 
-        expect(barcode.bgcolour).to eq "00ff00"
+        expect(bc.bgcolour).to eq "00ff00"
       end
 
       it "gets outfile correctly" do
@@ -247,75 +277,76 @@ module Zint
       end
 
       it "sets and gets scale correctly" do
-        barcode.scale = 1
-
-        expect(barcode.scale).to eq 1
+        bc = Zint::Barcode.new scale: 1
+        expect(bc.scale).to eq 1
+        bc.scale = 2
+        expect(bc.scale).to eq 2
       end
 
       it "sets and gets option_1 correctly" do
-        barcode.option_1 = 1
+        bc = Zint::Barcode.new option_1: 1
 
-        expect(barcode.option_1).to eq 1
+        expect(bc.option_1).to eq 1
       end
 
       it "sets and gets option_2 correctly" do
-        barcode.option_2 = 1
+        bc = Zint::Barcode.new option_2: 1
 
-        expect(barcode.option_2).to eq 1
+        expect(bc.option_2).to eq 1
       end
 
       it "sets and gets option_3 correctly" do
-        barcode.option_3 = 1
+        bc = Zint::Barcode.new option_3: 1
 
-        expect(barcode.option_3).to eq 1
+        expect(bc.option_3).to eq 1
       end
 
       it "sets and gets show_hrt correctly" do
-        barcode.show_hrt = 1
+        bc = Zint::Barcode.new show_hrt: 1
 
-        expect(barcode.show_hrt).to eq 1
+        expect(bc.show_hrt).to eq 1
       end
 
       it "sets and gets fontsize correctly" do
-        barcode.fontsize = 1
+        bc = Zint::Barcode.new fontsize: 1
 
-        expect(barcode.fontsize).to eq 1
+        expect(bc.fontsize).to eq 1
       end
 
       it "sets and gets input_mode correctly" do
-        barcode.input_mode = 1
+        bc = Zint::Barcode.new input_mode: 1
 
-        expect(barcode.input_mode).to eq 1
+        expect(bc.input_mode).to eq 1
       end
 
       it "sets and gets eci correctly" do
-        barcode.eci = 1
+        bc = Zint::Barcode.new eci: 1
 
-        expect(barcode.eci).to eq 1
+        expect(bc.eci).to eq 1
       end
 
       it "sets and gets dpmm correctly" do
-        barcode.dpmm = 1
+        bc = Zint::Barcode.new dpmm: 1
 
-        expect(barcode.dpmm).to eq 1
+        expect(bc.dpmm).to eq 1
       end
 
       it "sets and gets guard_descent correctly" do
-        barcode.guard_descent = 10
+        bc = Zint::Barcode.new guard_descent: 10
 
-        expect(barcode.guard_descent).to eq 10
+        expect(bc.guard_descent).to eq 10
       end
 
       it "sets and gets structapp correctly" do
-        barcode.structapp = Structs::Structapp.new
+        bc = Zint::Barcode.new structapp: Structs::Structapp.new
 
-        expect(barcode.structapp).to be_kind_of Structs::Structapp
+        expect(bc.structapp).to be_kind_of Structs::Structapp
       end
 
       it "sets and gets text correctly" do
-        barcode.text = "Täxt"
+        bc = Zint::Barcode.new text: "Täxt"
 
-        expect(barcode.text).to eq "Täxt"
+        expect(bc.text).to eq "Täxt"
       end
 
       it "provides text with checksum" do
@@ -333,15 +364,15 @@ module Zint
       end
 
       it "sets and gets primary correctly" do
-        barcode.primary = "primary text"
+        bc = Zint::Barcode.new primary: "primary text"
 
-        expect(barcode.primary).to eq "primary text"
+        expect(bc.primary).to eq "primary text"
       end
 
       it "sets and gets encoded_data correctly" do
-        barcode.encoded_data = "encoded_data"
+        bc = Zint::Barcode.new encoded_data: "encoded_data"
 
-        expect(barcode.encoded_data.to_s).to eq "encoded_data"
+        expect(bc.encoded_data.to_s).to eq "encoded_data"
       end
 
       it "sets and gets row_height correctly" do
@@ -371,21 +402,22 @@ module Zint
       end
 
       it "sets and gets dot_size correctly" do
-        barcode.dot_size = 1
+        bc = Zint::Barcode.new dot_size: 1
 
-        expect(barcode.dot_size).to eq 1
+        expect(bc.dot_size).to eq 1
       end
 
       it "sets and gets debug correctly" do
-        barcode.debug = 1
+        bc = Zint::Barcode.new debug: 1
 
-        expect(barcode.debug).to eq 1
+        expect(bc.debug).to eq 1
       end
 
       it "sets and gets warn_level correctly" do
-        barcode.warn_level = 1
-
-        expect(barcode.warn_level).to eq 1
+        bc = Zint::Barcode.new warn_level: 1
+        expect(bc.warn_level).to eq 1
+        bc.warn_level = 2
+        expect(bc.warn_level).to eq 2
       end
     end
 
