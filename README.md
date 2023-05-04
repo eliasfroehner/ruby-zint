@@ -71,8 +71,16 @@ end
 png.save("out.png")
 
 # Use vector export
-vector_struct = barcode.to_vector
-# See manual: https://zint.org.uk/manual/chapter/5#buffering-symbols-in-memory-vector
+vec = Zint::Qr.new(value: "Test").to_vector
+png = ChunkyPNG::Image.new(vec.width.to_i, vec.height.to_i, ChunkyPNG::Color::WHITE)
+vec.each_rectangle do |rec|
+  png.rect(rec.x.to_i, rec.y.to_i,
+      rec.x.to_i+rec.width.to_i-1, rec.y.to_i+rec.height.to_i-1,
+      ChunkyPNG::Color::BLACK, ChunkyPNG::Color::BLACK)
+end
+png.save("out.png")
+
+# See also manual: https://zint.org.uk/manual/chapter/5#buffering-symbols-in-memory-vector
 
 # Use file as input
 barcode = Zint::Barcode.new(input_file: "/tmp/test.txt")
