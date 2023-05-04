@@ -49,7 +49,7 @@ bundle config build.ruby-zint --enable-system-libzint
 ```ruby
 require "zint"
 
-barcode = Zint::Barcode.new(value: "Test", type: Zint::BARCODE_CODE128)
+barcode = Zint::Barcode.new(value: "Test", symbology: Zint::BARCODE_CODE128)
 
 # Export to file
 barcode.to_file(path: "out.png")

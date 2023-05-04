@@ -2,7 +2,7 @@ module Zint
   # Base class to represent the barcode
   #
   # @example Create new barcode
-  #   barcode = Zint::Barcode.new(value: "Test", type: Zint::BARCODE_QRCODE, options: {option_1: 1})
+  #   barcode = Zint::Barcode.new(value: "Test", symbology: Zint::BARCODE_QRCODE, option_1: 1)
   #   barcode.to_file(path: "qr.png")
   class Barcode
     include Native
@@ -14,15 +14,16 @@ module Zint
 
     # @param value [String, NilClass] Content of the barcode
     # @param input_file [String, NilClass] Path to input file with content of the barcode
-    # @param type [Integer] Type of barcode
-    # @param options [Hash] Specific options for Zint symbol
-    def initialize(value: nil, input_file: nil, type: Zint::BARCODE_CODE128, options: {})
+    # @param symbology [Integer] Type of barcode
+    # @param kwargs [Hash] Specific options for zint symbol (height, scale, ...)
+    def initialize(value: nil, input_file: nil, symbology: Zint::BARCODE_CODE128, **kwargs)
       raise ArgumentError, "value or input_file must be given!" if value&.empty? && input_file&.empty?
       raise ArgumentError, "input_file not found!" if input_file && !File.exist?(input_file)
 
-      @zint_symbol = create_symbol(type)
-      options.each do |key, value|
-        @zint_symbol[key] = value
+      @zint_symbol = Native.ZBarcode_Create
+      self.symbology = symbology
+      kwargs.each do |k, v|
+        send("#{k}=", v)
       end
 
       @value = value
@@ -528,13 +529,6 @@ module Zint
       end
 
       error_code
-    end
-
-    def create_symbol(type)
-      symbol = Native.ZBarcode_Create
-      symbol[:symbology] = type
-
-      symbol
     end
   end
 end
