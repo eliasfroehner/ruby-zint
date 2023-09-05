@@ -44,6 +44,10 @@ Optionally set the install option by running bundler like so:
 bundle config build.ruby-zint --enable-system-libzint
 ```
 
+### PNG support
+
+Please install libpng (e. g. `apt install libpng-dev`) before installing the gem if you want to use the PNG format.
+
 ## Usage
 
 ```ruby
