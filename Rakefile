@@ -3,9 +3,12 @@ require "rspec/core/rake_task"
 require_relative "lib/zint/zint_recipe"
 
 CLOBBER.include "pkg"
-CLEAN.include "ports"
+CLOBBER.add("ports/*").exclude(%r{ports/archives$})
 CLEAN.include "tmp"
 CLEAN.include "ext/ruby-zint/tmp"
+CLEAN.include "lib/*.a"
+CLEAN.include "lib/*.so*"
+CLEAN.include "lib/*.dll*"
 
 RSpec::Core::RakeTask.new(:spec)
 
