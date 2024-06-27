@@ -59,7 +59,7 @@ module Zint
 
       it "exports barcode to bitmap only once" do
         barcode.to_bitmap
-        expect{ barcode.to_bitmap }.to raise_error(Zint::Barcode::AlreadyGenerated)
+        expect { barcode.to_bitmap }.to raise_error(Zint::Barcode::AlreadyGenerated)
       end
 
       it "exports barcode to bitmap object from input file" do
@@ -136,7 +136,7 @@ module Zint
 
       it "exports barcode to buffer only once" do
         barcode.to_buffer
-        expect{ barcode.to_buffer }.to raise_error(Zint::Barcode::AlreadyGenerated)
+        expect { barcode.to_buffer }.to raise_error(Zint::Barcode::AlreadyGenerated)
       end
 
       it "exports barcode as vector from given value" do
@@ -147,7 +147,7 @@ module Zint
 
       it "exports barcode to vector only once" do
         barcode.to_vector
-        expect{ barcode.to_vector }.to raise_error(Zint::Barcode::AlreadyGenerated)
+        expect { barcode.to_vector }.to raise_error(Zint::Barcode::AlreadyGenerated)
       end
 
       it "exports barcode as vector from input file" do

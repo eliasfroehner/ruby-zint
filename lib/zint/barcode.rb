@@ -25,7 +25,7 @@ module Zint
       @zint_symbol = Native.ZBarcode_Create
       self.symbology = symbology
       kwargs.each do |k, v|
-        send("#{k}=", v)
+        send(:"#{k}=", v)
       end
 
       @value = value
@@ -39,7 +39,7 @@ module Zint
     #                      Must end in .png, .gif, .bmp, .emf, .eps, .pcx, .svg, .tif or .txt
     # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
     def to_file(path:, rotate_angle: 0)
-      unless outfile == 'out.png'
+      unless outfile == "out.png"
         raise AlreadyGenerated, "to_file was already executed"
       end
       @zint_symbol[:outfile] = path
