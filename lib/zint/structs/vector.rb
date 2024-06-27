@@ -18,22 +18,22 @@ module Zint
         self[:width]
       end
 
-      # Calls the given block and passes a VectorRect object for each rectangle to be printed.
+      # Calls the given block and passes a {VectorRect} object for each rectangle to be printed.
       def each_rectangle(&block)
         each_vector(:rectangles, &block)
       end
 
-      # Calls the given block and passes a VectorHexagon object for each hexagon to be printed.
+      # Calls the given block and passes a {VectorHexagon} object for each hexagon to be printed.
       def each_hexagon(&block)
         each_vector(:hexagons, &block)
       end
 
-      # Calls the given block and passes a VectorString object for each text string to be printed.
+      # Calls the given block and passes a {VectorString} object for each text string to be printed.
       def each_string(&block)
         each_vector(:strings, &block)
       end
 
-      # Calls the given block and passes a VectorCircle object for each circle to be printed.
+      # Calls the given block and passes a {VectorCircle} object for each circle to be printed.
       def each_circle(&block)
         each_vector(:circles, &block)
       end
