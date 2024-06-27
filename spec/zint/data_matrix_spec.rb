@@ -17,7 +17,15 @@ module Zint
         dm_code = described_class.new(value: "/ACMRN123456/V200912190833")
         svg_file = dm_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/data_matrix.svg")).to eq svg_file
+        expect(svg_file).to eq File.read("spec/fixtures/data_matrix.svg")
+      end
+
+      it "export German Post DataMatrix code" do
+        dm_code = described_class.new(value: "\x44\x45\x41\x12\x33\x01\x2c\xcc\xaa\x60\x00\x55\x48\x5c\x00\x01\x00\x00\x01\x02\x19\xa5\x00\x20\x20")
+        dm_code.option_2 = 9 # 26x26 symbol size
+        svg_file = dm_code.to_memory_file(extension: ".svg")
+
+        expect(svg_file).to eq File.read("spec/fixtures/data_matrix_german_post.svg")
       end
     end
   end

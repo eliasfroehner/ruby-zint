@@ -47,7 +47,7 @@ module Zint
       if input_file
         call_function(:ZBarcode_Encode_File_and_Print, @zint_symbol, input_file, rotate_angle)
       else
-        call_function(:ZBarcode_Encode_and_Print, @zint_symbol, value, 0, rotate_angle)
+        call_function(:ZBarcode_Encode_and_Print, @zint_symbol, value, value.bytesize, rotate_angle)
       end
     end
 
@@ -83,7 +83,7 @@ module Zint
       if input_file
         call_function(:ZBarcode_Encode_File_and_Buffer, @zint_symbol, input_file, rotate_angle)
       else
-        call_function(:ZBarcode_Encode_and_Buffer, @zint_symbol, value, 0, rotate_angle)
+        call_function(:ZBarcode_Encode_and_Buffer, @zint_symbol, value, value.bytesize, rotate_angle)
       end
 
       @zint_symbol[:bitmap].read_bytes((@zint_symbol[:bitmap_width] * @zint_symbol[:bitmap_height]))
@@ -117,7 +117,7 @@ module Zint
       if input_file
         call_function(:ZBarcode_Encode_File_and_Buffer_Vector, @zint_symbol, input_file, rotate_angle)
       else
-        call_function(:ZBarcode_Encode_and_Buffer_Vector, @zint_symbol, value, 0, rotate_angle)
+        call_function(:ZBarcode_Encode_and_Buffer_Vector, @zint_symbol, value, value.bytesize, rotate_angle)
       end
 
       v = @zint_symbol[:vector]
