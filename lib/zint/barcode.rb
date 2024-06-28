@@ -126,6 +126,20 @@ module Zint
       v
     end
 
+    # Encodes the symbology without exporting to a bitmap or vector data
+    #
+    # This method fills the output accessors of the {Barcode} object.
+    #
+    # @return self
+    def encode
+      if input_file
+        call_function(:ZBarcode_Encode_File, @zint_symbol, input_file)
+      else
+        call_function(:ZBarcode_Encode, @zint_symbol, value, value.bytesize)
+      end
+      self
+    end
+
     # Free barcode and all memory associated with it.
     #
     # Note: This method is dangerous insofar, that previously exported vectors (by #to_vector ) are no longer usable and any access to them will result in a segfault.
@@ -377,13 +391,6 @@ module Zint
       @zint_symbol[:text].to_s.force_encoding(Encoding::UTF_8)
     end
 
-    # Sets Human Readable Text (if any), UTF-8, NUL-terminated (output only) of barcode
-    #
-    # @param text [String] Text of barcode
-    def text=(text)
-      @zint_symbol[:text] = text
-    end
-
     # Gets rows of barcode
     def rows
       @zint_symbol[:rows]
@@ -406,21 +413,55 @@ module Zint
       @zint_symbol[:primary] = primary
     end
 
-    # Gets encoded data of barcode
-    def encoded_data
+    # Gets encoded data of barcode as internal FFI::StructLayout::CharArray object
+    #
+    # Don't use this method, it might be changed in future releases.
+    def encoded_data_raw_ffi
       @zint_symbol[:encoded_data]
     end
 
-    # Sets encoded data (output only). Allows for rows of 1144 modules of barcode
+    # Return the raw encoded data as array of strings.
     #
-    # @param encoded_data [String] Encoded data of barcode
-    def encoded_data=(encoded_data)
-      @zint_symbol[:encoded_data] = encoded_data
+    # Each row of the symbology is represented by one item of the array.
+    # The columns are represented by "0" and "1" characters of the stings.
+    #
+    # @example
+    #   Zint::DataMatrix.new(value: "12345").encode.encoded_data_as_array_of_strings
+    #   # => ["1010101010",
+    #   #     "1101100111",
+    #   #     "1100010110",
+    #   #     "1100110101",
+    #   #     "1100111000",
+    #   #     "1000011111",
+    #   #     "1101011110",
+    #   #     "1110000111",
+    #   #     "1101100100",
+    #   #     "1111111111"]
+    #
+    # @return [Array<String>] encoded data
+    def encoded_data_as_array_of_strings
+      rows.times.map do |row|
+        binstr = @zint_symbol[:encoded_data].to_ptr.get_bytes(144 * row, (width+7) / 8)
+        binstr.unpack1("b*")[0, width]
+      end
     end
 
-    # Gets row height of barcode
-    def row_height
+    # Gets row heights of barcode as internal FFI::Struct::InlineArray object
+    #
+    # Don't use this method, it might be changed in future releases.
+    def row_height_raw_ffi
       @zint_symbol[:row_height]
+    end
+
+    # Gets heights of all barcode rows
+    #
+    # @example
+    #   Zint::Kix.new(value: "130203").encode.row_heights
+    #   # => [3.0, 2.0, 3.0]
+    #
+    # @return [Array<Float>] row heights
+    def row_heights
+      @zint_symbol[:row_height].to_a[0, rows]
     end
 
     # Gets error message in the event that an error occurred

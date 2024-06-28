@@ -206,6 +206,15 @@ module Zint
         expect(strs[0].diameter).to be > 1.0
         expect(strs[0].rotation).to eq(0)
       end
+
+      it "encodes the barcode without export" do
+        b = barcode.encode
+        expect(b).to be(barcode)
+        expect(barcode.rows).to be > 0
+        expect(barcode.width).to be > 0
+        expect(barcode.encoded_data_as_array_of_strings).to be_kind_of(Array)
+        expect(barcode.encoded_data_as_array_of_strings[0]).to be_kind_of(String)
+      end
     end
 
     describe "attributes" do
@@ -343,15 +352,8 @@ module Zint
         expect(bc.structapp).to be_kind_of Structs::Structapp
       end
 
-      it "sets and gets text correctly" do
-        bc = Zint::Barcode.new text: "Täxt"
-
-        expect(bc.text).to eq "Täxt"
-      end
-
       it "provides text with checksum" do
-        barcode = Zint::Eanx.new(value: "123456789012")
-        barcode.to_buffer
+        barcode = Zint::Eanx.new(value: "123456789012").encode
         expect(barcode.text).to eq "1234567890128"
       end
 
@@ -367,16 +369,6 @@ module Zint
         bc = Zint::Barcode.new primary: "primary text"
 
         expect(bc.primary).to eq "primary text"
-      end
-
-      it "sets and gets encoded_data correctly" do
-        bc = Zint::Barcode.new encoded_data: "encoded_data"
-
-        expect(bc.encoded_data.to_s).to eq "encoded_data"
-      end
-
-      it "sets and gets row_height correctly" do
-        expect(barcode.row_height.to_a).to be_kind_of Array
       end
 
       it "gets errtxt correctly" do

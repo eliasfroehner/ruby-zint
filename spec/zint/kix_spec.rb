@@ -7,6 +7,11 @@ module Zint
 
         expect(File.read("spec/fixtures/kix.svg")).to eq svg_file
       end
+
+      it "provides row_heights" do
+        heights = Zint::Kix.new(value: "130203").encode.row_heights
+        expect(heights).to eq [3.0, 2.0, 3.0]
+      end
     end
   end
 end
