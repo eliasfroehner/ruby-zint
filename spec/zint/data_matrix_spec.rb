@@ -12,6 +12,20 @@ module Zint
       end
     end
 
+    it "provides encoded_data" do
+      enc = Zint::DataMatrix.new(value: "12345").encode.encoded_data_as_array_of_strings
+      expect(enc).to eq( ["1010101010",
+                          "1101100111",
+                          "1100010110",
+                          "1100110101",
+                          "1100111000",
+                          "1000011111",
+                          "1101011110",
+                          "1110000111",
+                          "1101100100",
+                          "1111111111"])
+    end
+
     describe "export" do
       it "export DataMatrix code" do
         dm_code = described_class.new(value: "/ACMRN123456/V200912190833")

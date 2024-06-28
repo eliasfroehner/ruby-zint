@@ -8,5 +8,10 @@ module Zint
         expect(File.read("spec/fixtures/eanx.svg")).to eq svg_file
       end
     end
+
+    it "provides encoded_data" do
+      enc = Zint::Eanx.new(value: "2092001474353").encode.encoded_data_as_array_of_strings
+      expect(enc).to eq ["10100011010001011001101101001110001101011001101010101110010001001011100100001010011101000010101"]
+    end
   end
 end
