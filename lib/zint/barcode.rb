@@ -441,7 +441,7 @@ module Zint
     # @return [Array<String>] encoded data
     def encoded_data_as_array_of_strings
       rows.times.map do |row|
-        binstr = @zint_symbol[:encoded_data].to_ptr.get_bytes(144 * row, (width+7) / 8)
+        binstr = @zint_symbol[:encoded_data].to_ptr.get_bytes(144 * row, (width + 7) / 8)
         binstr.unpack1("b*")[0, width]
       end
     end
