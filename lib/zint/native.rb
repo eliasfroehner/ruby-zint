@@ -17,7 +17,7 @@ module Zint
     typedef :int32, :rotate_angle
     typedef :int32, :symbol_id
     typedef :uint32, :cap_flag
-    typedef :string, :source
+    typedef :pointer, :source
 
     # Create and initialize a symbol structure
     attach_function(:ZBarcode_Create, [], :zint_symbol)
