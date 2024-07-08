@@ -97,8 +97,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
   standardrb:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
     steps:
-      - name: standardrb
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: amoeba/standardrb-action@v4
+      - name: Standard Ruby
+        uses: standardrb/standard-ruby-action@v1
