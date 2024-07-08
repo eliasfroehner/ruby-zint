@@ -32,9 +32,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "mini_portile2", Zint::MINI_PORTILE_VERSION
 
   yardopts = File.read(".yardopts")
-  spec.rdoc_options  = ["--main", "README.md",
-                        "--title", "Ruby FFI binding for libzint",
-                        "--exclude", "/ext.ruby-zint/"]
-  docfiles = yardopts.lines.map(&:strip).select{|r| r=~/^[^-]/ }
+  spec.rdoc_options = ["--main", "README.md",
+    "--title", "Ruby FFI binding for libzint",
+    "--exclude", "/ext.ruby-zint/"]
+  docfiles = yardopts.lines.map(&:strip).select { |r| r =~ /^[^-]/ }
   spec.extra_rdoc_files = `git ls-files -z #{docfiles.join(" ")}`.split("\x0")
 end
