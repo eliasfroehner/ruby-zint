@@ -86,7 +86,7 @@ module Zint
         call_function(:ZBarcode_Encode_and_Buffer, @zint_symbol, value, value.bytesize, rotate_angle)
       end
 
-      @zint_symbol[:bitmap].read_bytes((@zint_symbol[:bitmap_width] * @zint_symbol[:bitmap_height]))
+      @zint_symbol[:bitmap].read_bytes(@zint_symbol[:bitmap_width] * @zint_symbol[:bitmap_height])
     end
 
     # Exports barcode to buffer
