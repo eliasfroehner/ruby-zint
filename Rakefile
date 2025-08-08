@@ -55,6 +55,8 @@ exttask = Rake::ExtensionTask.new("libzint", spec) do |ext|
     # Binary gems don't need header+lib files of MINGW packages
     spec.metadata.delete("msys2_mingw_dependencies")
     spec.dependencies.reject! { |dep| dep.name == "mini_portile2" }
+    # Remove source tar files
+    spec.files.delete_if { |f| File.fnmatch?("ports/archives/*", f) }
   end
 end
 
