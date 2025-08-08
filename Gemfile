@@ -18,3 +18,7 @@ gem "standard", "~> 1.3"
 gem "mini_portile2"
 
 gem "yard"
+
+# To provide binary native gems
+gem "rake-compiler-dock", "~> 1.9"
+gem "rake-compiler"

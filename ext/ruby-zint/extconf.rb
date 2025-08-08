@@ -69,6 +69,11 @@ unless enable_config("system-libzint", libzint_usable?)
   libzint_path = build_bundled_libzint
 end
 
+if libzint_path
+  # For cross compiled gem
+  FileUtils.cp Dir["#{libzint_path}/*/libzint.*"].first, "libzint.#{RbConfig::CONFIG["DLEXT"]}", verbose: true
+end
+
 # Create a Makefile which copies the libzint library files to the gem's lib dir.
 File.open("Makefile", "wb") do |mf|
   mf.puts <<~EOT
@@ -79,6 +84,7 @@ File.open("Makefile", "wb") do |mf|
   EOT
 
   if libzint_path
+    # Only executed in source build
     mf.puts <<-EOT
 	cp -r #{libzint_path.dump}/*/libzint* $(RUBYARCHDIR)
     EOT
