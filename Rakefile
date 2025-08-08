@@ -66,7 +66,12 @@ namespace "gem" do
     sh "bundle package"
     sh "mkdir -p build/gem"
     sh "cp ~/.gem/gem-*.pem build/gem/ || true"
-    ENV["GEM_PRIVATE_KEY_PASSPHRASE"] = $stdin.getpass("Enter passphrase of gem signature key: ")
+    begin
+      OpenSSL::PKey.read(File.read(File.expand_path("~/.gem/gem-private_key.pem")), ENV["GEM_PRIVATE_KEY_PASSPHRASE"] || "")
+    rescue OpenSSL::PKey::PKeyError
+      ENV["GEM_PRIVATE_KEY_PASSPHRASE"] = $stdin.getpass("Enter passphrase of gem signature key: ")
+      retry
+    end
   end
 
   PLATFORMS.each do |plat|

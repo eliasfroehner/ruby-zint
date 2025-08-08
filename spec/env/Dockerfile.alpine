@@ -1,0 +1,20 @@
+ARG from_image
+FROM ${from_image}
+
+RUN uname -a
+RUN apk add ruby ruby-rake ruby-dev git gcc make musl-dev sudo
+
+RUN git config --global --add safe.directory /build
+RUN ruby --version
+RUN gem env
+RUN gem inst bundler --conservative
+RUN gem list
+
+WORKDIR /build
+
+CMD ruby -v && \
+  ruby -e "puts Gem::Platform.local.to_s" && \
+  gem install *.gem --verbose --no-document && \
+  bundle config set --local without 'development' && \
+  bundle install && \
+  ruby -rzint -S rspec -fd spec/**/*_spec.rb
