@@ -86,7 +86,7 @@ namespace "gem" do
         (cp build/gem/gem-*.pem ~/.gem/ || true) &&
         bundle --local &&
         echo '/usr/bin/*-w64-mingw32-windres "$@"' | sudo tee /usr/local/bin/windres && sudo chmod +x /usr/local/bin/windres &&
-        rake native:#{plat} pkg/#{exttask.gem_spec.full_name}-#{plat}.gem RUBY_CC_VERSION=#{RakeCompilerDock.ruby_cc_version(cc_version)}:0.0.0
+        rake native:#{plat} pkg/#{exttask.gem_spec.full_name}-#{plat}.gem RUBY_CC_VERSION=#{RakeCompilerDock.ruby_cc_version(cc_version)}:0.0.0 MAKE="make -j12 VERBOSE=1"
       EOT
     end
   end
