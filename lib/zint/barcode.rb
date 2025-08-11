@@ -57,17 +57,11 @@ module Zint
     # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
     # @return [String] Exported memory file
     def to_memory_file(extension: ".png", rotate_angle: 0)
-      require "tempfile"
-      file = Tempfile.new(["zint", extension])
+      @zint_symbol[:output_options] = Zint::BARCODE_MEMORY_FILE
 
-      to_file(path: file.path, rotate_angle: rotate_angle)
+      to_file(path: extension, rotate_angle: rotate_angle)
 
-      file.rewind
-      buffer = file.read
-      file.close
-      file.unlink
-
-      buffer
+      @zint_symbol[:memfile].read_bytes(@zint_symbol[:memfile_size])
     end
 
     # Exports barcode to buffer
