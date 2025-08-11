@@ -1,7 +1,7 @@
 require "fileutils"
-require "bundler/gem_tasks"
 require "rspec/core/rake_task"
 require "rake/extensiontask"
+require_relative "rakelib/zint_gem_helper"
 require_relative "lib/zint/zint_recipe"
 
 CLOBBER.include "pkg"
@@ -39,6 +39,11 @@ PLATFORMS = %w[
 # Will be available with rake-compiler-dock-1.10:
 #   aarch64-mingw-ucrt
 
+# Register binary gems to be pushed to rubygems.org as part of `rake release`
+ZintGemHelper.install_tasks
+Bundler::GemHelper.instance.cross_platforms = PLATFORMS
+
+# Build libzint (with static linked libpng and libz) as a kind of ruby extension, although it is only a plain DLL/shared object.
 spec = Gem::Specification.load("ruby-zint.gemspec").dup
 exttask = Rake::ExtensionTask.new("libzint", spec) do |ext|
   ext.ext_dir = "ext/ruby-zint"
