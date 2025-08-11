@@ -131,7 +131,8 @@ module Zint
       BARCODE_ULTRA = 144 #  Ultracode
       BARCODE_RMQR = 145 #  Rectangular Micro QR Code (rMQR)
       BARCODE_BC412 = 146 # IBM BC412 (SEMI T1-95)
-      BARCODE_LAST = 146 # Max barcode number marker, not barcode
+      BARCODE_DXFILMEDGE = 147 # DX Film Edge Barcode on 35mm and APS films
+      BARCODE_LAST = 147 # Max barcode number marker, not barcode
     end
   end
 end

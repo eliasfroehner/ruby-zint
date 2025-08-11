@@ -19,7 +19,8 @@ RSpec.describe Zint do
         11 => Zint::ErrorMemory,
         12 => Zint::ErrorFileWrite,
         13 => Zint::ErrorUsesEci,
-        14 => Zint::ErrorNoncompliant
+        14 => Zint::ErrorNoncompliant,
+        15 => Zint::ErrorHrtTruncated
       })
     end
   end

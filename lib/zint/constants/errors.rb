@@ -12,7 +12,8 @@ module Zint
         error_memory: 11,
         error_file_write: 12,
         error_uses_eci: 13,
-        error_noncompliant: 14
+        error_noncompliant: 14,
+        error_hrt_truncated: 15  # Error counterpart of warning if WARN_FAIL_ALL set */
       }
     end
   end
