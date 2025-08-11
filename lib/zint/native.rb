@@ -65,6 +65,23 @@ module Zint
     # Encode a symbol using input data from file `filename` and output to memory as vector (`symbol->vector`)
     attach_function(:ZBarcode_Encode_File_and_Buffer_Vector, [:zint_symbol, :filename, :rotate_angle], :error_code, blocking: true)
 
+    # ********* Segment support *********
+    # int ZBarcode_Encode_Segs(struct zint_symbol *symbol,
+    #       const struct zint_seg segs[], const int seg_count);
+    attach_function(:ZBarcode_Encode_Segs, [:zint_symbol, :pointer, :int], :error_code, blocking: true)
+
+    # int ZBarcode_Encode_Segs_and_Print(struct zint_symbol *symbol,
+    #       const struct zint_seg segs[], const int seg_count, int rotate_angle);
+    attach_function(:ZBarcode_Encode_Segs_and_Print, [:zint_symbol, :pointer, :int, :rotate_angle], :error_code, blocking: true)
+
+    # int ZBarcode_Encode_Segs_and_Buffer(struct zint_symbol *symbol,
+    #       const struct zint_seg segs[], const int seg_count, int rotate_angle);
+    attach_function(:ZBarcode_Encode_Segs_and_Buffer, [:zint_symbol, :pointer, :int, :rotate_angle], :error_code, blocking: true)
+
+    # int ZBarcode_Encode_Segs_and_Buffer_Vector(struct zint_symbol *symbol,
+    #       const struct zint_seg segs[], const int seg_count, int rotate_angle);
+    attach_function(:ZBarcode_Encode_Segs_and_Buffer_Vector, [:zint_symbol, :pointer, :int, :rotate_angle], :error_code, blocking: true)
+
     # Is `symbol_id` a recognized symbology?
     attach_function(:ZBarcode_ValidID, [:symbol_id], :bool, blocking: true)
 

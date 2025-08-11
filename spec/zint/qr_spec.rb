@@ -52,5 +52,34 @@ module Zint
         end
       end
     end
+
+    describe "ECI support" do
+      it "should encode to cyrillic code" do
+        # This code should be read as: "Больше слушай, меньше говори."
+        barcode = Zint::Qr.new(segments: [source: "±ÞÛìèÕ áÛãèÐÙ, ÜÕÝìèÕ ÓÞÒÞàØ.".encode("ISO-8859-1"), eci: 7])
+
+        svg_file = barcode.to_memory_file(extension: ".svg")
+
+        expect_svg_file(svg_file, "spec/fixtures/qr-code-with-eci.svg")
+      end
+
+      it "should encode from cyrillic code" do
+        # This code should be read as: "Больше слушай, меньше говори."
+        barcode = Zint::Qr.new(segments: [source: "Больше слушай, меньше говори.".encode("ISO-8859-5"), eci: 7])
+
+        svg_file = barcode.to_memory_file(extension: ".svg")
+
+        # Same file as above:
+        expect(File.read("spec/fixtures/qr-code-with-eci.svg")).to eq svg_file
+      end
+
+      it "should encode multiple segments" do
+        # This code should be read as: "ΚείμενοТекст文章"
+        barcode = Zint::Barcode.new(segments: [{source: "Κείμενο".encode("ISO-8859-7"), eci: 9}, {source: "Текст".encode("ISO-8859-5"), eci: 7}, {source: "文章".encode("SHIFT_JIS"), eci: 20}], symbology: Zint::BARCODE_QRCODE)
+        svg_file = barcode.to_memory_file(extension: ".svg")
+
+        expect_svg_file(svg_file, "spec/fixtures/qr-code-with-multi-segments.svg")
+      end
+    end
   end
 end
