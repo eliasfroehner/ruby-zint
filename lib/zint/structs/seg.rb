@@ -9,8 +9,8 @@ module Zint
       # };
 
       layout :source, :pointer, # Data to encode, or (`raw_segs`) data encoded
-          :length, :int, # Length of `source`. If 0 or negative, `source` must be NUL-terminated
-          :eci, :int # Extended Channel Interpretation
+        :length, :int, # Length of `source`. If 0 or negative, `source` must be NUL-terminated
+        :eci, :int # Extended Channel Interpretation
 
       # Data to encode, or (`raw_segs`) data encoded
       def source

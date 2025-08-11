@@ -42,11 +42,11 @@ module Zint
         :memfile, :pointer, # unsigned char *memfile; /* Pointer to in-memory file buffer if BARCODE_MEMORY_FILE (output only) */
         :memfile_size, :int # int memfile_size;   /* Length of in-memory file buffer (output only) */
 
-        # Upcomming zint-2.16:
-        # struct zint_seg *raw_segs; /* Pointer to array of raw segs if BARCODE_RAW_TEXT (output only) */
-        # :raw_segs, Seg.by_ref,
-        # int raw_seg_count;  /* Number of `raw_segs` (output only) */
-        # :raw_seg_count, :int
+      # Upcomming zint-2.16:
+      # struct zint_seg *raw_segs; /* Pointer to array of raw segs if BARCODE_RAW_TEXT (output only) */
+      # :raw_segs, Seg.by_ref,
+      # int raw_seg_count;  /* Number of `raw_segs` (output only) */
+      # :raw_seg_count, :int
 
       # @private
       def self.release(ptr)
