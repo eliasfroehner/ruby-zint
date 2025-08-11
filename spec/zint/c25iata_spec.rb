@@ -5,8 +5,7 @@ module Zint
         c25iata_code = described_class.new(value: "012345678912")
         svg_file = c25iata_code.to_memory_file(extension: ".svg")
 
-        File.write("spec/fixtures/c25iata.svg", svg_file) if $UPDATE_ZINT_FIXTURES
-        expect(svg_file).to eq(File.read("spec/fixtures/c25iata.svg"))
+        expect_svg_file(svg_file, "spec/fixtures/c25iata.svg")
       end
     end
   end

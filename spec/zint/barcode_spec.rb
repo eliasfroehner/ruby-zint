@@ -52,8 +52,7 @@ module Zint
 
         png.save(buffer_outfile)
 
-        File.binwrite("spec/fixtures/buffer.png", File.binread(buffer_outfile)) if $UPDATE_ZINT_FIXTURES
-        expect(File.binread(buffer_outfile)).to eq File.binread("spec/fixtures/buffer.png")
+        expect_png_file(buffer_outfile, "spec/fixtures/buffer.png")
       end
 
       it "exports barcode to bitmap only once" do
@@ -77,8 +76,7 @@ module Zint
 
         png.save(buffer_outfile)
 
-        File.binwrite("spec/fixtures/buffer_from_input_file.png", File.binread(buffer_outfile)) if $UPDATE_ZINT_FIXTURES
-        expect(File.binread(buffer_outfile)).to eq File.binread("spec/fixtures/buffer_from_input_file.png")
+        expect_png_file(buffer_outfile, "spec/fixtures/buffer_from_input_file.png")
       end
 
       it "exports colored barcode to buffer from value" do
@@ -130,7 +128,7 @@ module Zint
       it "exports barcode to zint bitmap" do
         bitmap = barcode.to_buffer
 
-        File.write("spec/fixtures/barcode_raw_bitmap.txt", bitmap) if $UPDATE_ZINT_FIXTURES
+        File.write("spec/fixtures/barcode_raw_bitmap.txt", bitmap) if update_zint_fixtures
         expect(bitmap).to eq File.read("spec/fixtures/barcode_raw_bitmap.txt")
       end
 

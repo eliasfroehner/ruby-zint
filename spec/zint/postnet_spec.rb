@@ -5,8 +5,7 @@ module Zint
         postnet_code = described_class.new(value: "012345678912")
         svg_file = postnet_code.to_memory_file(extension: ".svg")
 
-        File.write("spec/fixtures/postnet.svg", svg_file) if $UPDATE_ZINT_FIXTURES
-        expect(svg_file).to eq(File.read("spec/fixtures/postnet.svg"))
+        expect_svg_file(svg_file, "spec/fixtures/postnet.svg")
       end
     end
   end
