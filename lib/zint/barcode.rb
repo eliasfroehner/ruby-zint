@@ -314,18 +314,6 @@ module Zint
       @zint_symbol[:show_hrt] = show_hrt
     end
 
-    # Gets font size of barcode
-    def fontsize
-      @zint_symbol[:fontsize]
-    end
-
-    # Sets font size of barcode (Unused)
-    #
-    # @param fontsize [Integer] Font size of barcode
-    def fontsize=(fontsize)
-      @zint_symbol[:fontsize] = fontsize
-    end
-
     # Gets input mode of barcode
     def input_mode
       @zint_symbol[:input_mode]
@@ -388,7 +376,7 @@ module Zint
 
     # Human Readable Text, which usually consists of input data plus one more check digit. Uses UTF-8 formatting.
     def text
-      @zint_symbol[:text].to_s.force_encoding(Encoding::UTF_8)
+      @zint_symbol[:text].to_ptr.read_bytes(@zint_symbol[:text_length]).force_encoding(Encoding::UTF_8)
     end
 
     # Gets rows of barcode
@@ -477,11 +465,6 @@ module Zint
     # Gets bitmap height of barcode
     def bitmap_height
       @zint_symbol[:bitmap_height]
-    end
-
-    # Gets bitmap byte length of barcode
-    def bitmap_byte_length
-      @zint_symbol[:bitmap_byte_length]
     end
 
     # Gets dot size of barcode

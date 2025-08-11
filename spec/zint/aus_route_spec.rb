@@ -5,7 +5,8 @@ module Zint
         ausroute_code = described_class.new(value: "96184209")
         svg_file = ausroute_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/ausroute.svg")).to eq svg_file
+        File.write("spec/fixtures/ausroute.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/ausroute.svg"))
       end
     end
   end

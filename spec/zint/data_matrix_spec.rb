@@ -31,6 +31,7 @@ module Zint
         dm_code = described_class.new(value: "/ACMRN123456/V200912190833")
         svg_file = dm_code.to_memory_file(extension: ".svg")
 
+        File.write("spec/fixtures/data_matrix.svg", svg_file) if $UPDATE_ZINT_FIXTURES
         expect(svg_file).to eq File.read("spec/fixtures/data_matrix.svg")
       end
 
@@ -39,6 +40,7 @@ module Zint
         dm_code.option_2 = 9 # 26x26 symbol size
         svg_file = dm_code.to_memory_file(extension: ".svg")
 
+        File.write("spec/fixtures/data_matrix_german_post.svg", svg_file) if $UPDATE_ZINT_FIXTURES
         expect(svg_file).to eq File.read("spec/fixtures/data_matrix_german_post.svg")
       end
     end

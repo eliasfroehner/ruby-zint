@@ -7,6 +7,10 @@ end
 
 require "zint"
 
+# This can be used when a newer zint version generates different SVG files.
+# Don't keep the switch permanently enabled!
+# $UPDATE_ZINT_FIXTURES = true
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"

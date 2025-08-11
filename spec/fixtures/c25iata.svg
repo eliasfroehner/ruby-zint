@@ -1,80 +1,12 @@
 <?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
-   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="354" height="119" version="1.1"
-   xmlns="http://www.w3.org/2000/svg">
-   <desc>Zint Generated Symbol
-   </desc>
-
-   <g id="barcode" fill="#000000">
-      <rect x="0" y="0" width="354" height="119" fill="#FFFFFF" />
-      <rect x="0.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="4.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="8.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="12.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="16.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="24.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="32.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="36.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="44.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="48.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="52.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="56.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="64.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="68.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="76.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="80.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="84.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="92.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="100.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="108.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="112.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="116.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="120.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="124.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="128.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="136.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="140.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="148.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="156.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="160.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="168.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="172.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="176.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="180.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="188.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="196.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="200.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="204.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="208.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="212.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="216.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="224.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="232.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="240.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="244.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="248.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="256.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="260.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="264.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="272.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="276.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="284.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="288.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="296.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="300.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="304.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="308.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="316.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="320.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="328.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="332.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="336.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="344.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="352.00" y="0.00" width="2.00" height="100.00" />
-      <text x="177.00" y="115.40" text-anchor="middle"
-         font-family="Helvetica, sans-serif" font-size="14.0" >
-         012345678912
-      </text>
-   </g>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="354" height="117" version="1.1" xmlns="http://www.w3.org/2000/svg">
+ <desc>Zint Generated Symbol</desc>
+ <g id="barcode" fill="#000000">
+  <rect x="0" y="0" width="354" height="117" fill="#FFFFFF"/>
+  <path d="M0 0h2v100h-2ZM4 0h2v100h-2ZM8 0h2v100h-2ZM12 0h2v100h-2ZM16 0h6v100h-6ZM24 0h6v100h-6ZM32 0h2v100h-2ZM36 0h6v100h-6ZM44 0h2v100h-2ZM48 0h2v100h-2ZM52 0h2v100h-2ZM56 0h6v100h-6ZM64 0h2v100h-2ZM68 0h6v100h-6ZM76 0h2v100h-2ZM80 0h2v100h-2ZM84 0h6v100h-6ZM92 0h6v100h-6ZM100 0h6v100h-6ZM108 0h2v100h-2ZM112 0h2v100h-2ZM116 0h2v100h-2ZM120 0h2v100h-2ZM124 0h2v100h-2ZM128 0h6v100h-6ZM136 0h2v100h-2ZM140 0h6v100h-6ZM148 0h6v100h-6ZM156 0h2v100h-2ZM160 0h6v100h-6ZM168 0h2v100h-2ZM172 0h2v100h-2ZM176 0h2v100h-2ZM180 0h6v100h-6ZM188 0h6v100h-6ZM196 0h2v100h-2ZM200 0h2v100h-2ZM204 0h2v100h-2ZM208 0h2v100h-2ZM212 0h2v100h-2ZM216 0h6v100h-6ZM224 0h6v100h-6ZM232 0h6v100h-6ZM240 0h2v100h-2ZM244 0h2v100h-2ZM248 0h6v100h-6ZM256 0h2v100h-2ZM260 0h2v100h-2ZM264 0h6v100h-6ZM272 0h2v100h-2ZM276 0h6v100h-6ZM284 0h2v100h-2ZM288 0h6v100h-6ZM296 0h2v100h-2ZM300 0h2v100h-2ZM304 0h2v100h-2ZM308 0h6v100h-6ZM316 0h2v100h-2ZM320 0h6v100h-6ZM328 0h2v100h-2ZM332 0h2v100h-2ZM336 0h6v100h-6ZM344 0h6v100h-6ZM352 0h2v100h-2Z"/>
+  <text x="177" y="113.34" text-anchor="middle" font-family="Arimo, Arial, sans-serif" font-size="14">
+   012345678912
+  </text>
+ </g>
 </svg>

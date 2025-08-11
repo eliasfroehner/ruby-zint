@@ -5,7 +5,8 @@ module Zint
         nve18_code = described_class.new(value: "12345678901234567")
         svg_file = nve18_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/nve18.svg")).to eq svg_file
+        File.write("spec/fixtures/nve18.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/nve18.svg"))
       end
     end
   end

@@ -7,7 +7,8 @@ module Zint
 
         dbaromn_code = described_class.new(value: "0950110153001")
         dbaromn_code.to_file(path: "spec/fixtures/dbaromn.svg")
-        expect(File.read("spec/fixtures/dbaromn.svg")).to eq svg_file
+        File.write("spec/fixtures/dbaromn.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/dbaromn.svg"))
       end
     end
   end

@@ -7,7 +7,8 @@ module Zint
 
         hibcaztec_code = described_class.new(value: "012345678912")
         hibcaztec_code.to_file(path: "spec/fixtures/hibcaztec.svg")
-        expect(File.read("spec/fixtures/hibcaztec.svg")).to eq svg_file
+        File.write("spec/fixtures/hibcaztec.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/hibcaztec.svg"))
       end
     end
   end

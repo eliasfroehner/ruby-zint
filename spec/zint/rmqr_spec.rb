@@ -5,7 +5,8 @@ module Zint
         rmqr_code = described_class.new(value: "012345678912")
         svg_file = rmqr_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/rmqr.svg")).to eq svg_file
+        File.write("spec/fixtures/rmqr.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/rmqr.svg"))
       end
     end
   end

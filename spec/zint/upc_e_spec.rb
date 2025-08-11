@@ -5,7 +5,8 @@ module Zint
         upce_code = described_class.new(value: "12345670")
         svg_file = upce_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/upce.svg")).to eq svg_file
+        File.write("spec/fixtures/upce.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/upce.svg"))
       end
     end
   end

@@ -1,59 +1,12 @@
 <?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
-   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="330" height="139" version="1.1"
-   xmlns="http://www.w3.org/2000/svg">
-   <desc>Zint Generated Symbol
-   </desc>
-
-   <g id="barcode" fill="#000000">
-      <rect x="0" y="0" width="330" height="139" fill="#FFFFFF" />
-      <rect x="30.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="34.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="38.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="42.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="46.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="58.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="70.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="74.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="82.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="90.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="94.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="98.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="110.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="118.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="126.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="134.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="138.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="146.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="154.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="162.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="174.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="178.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="182.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="190.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="194.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="198.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="210.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="218.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="226.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="234.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="238.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="246.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="254.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="262.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="270.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="274.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="282.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="290.00" y="10.00" width="6.00" height="100.00" />
-      <rect x="298.00" y="10.00" width="2.00" height="100.00" />
-      <rect x="0.00" y="0.00" width="330.00" height="10.00" />
-      <rect x="0.00" y="110.00" width="330.00" height="10.00" />
-      <rect x="0.00" y="10.00" width="10.00" height="100.00" />
-      <rect x="320.00" y="10.00" width="10.00" height="100.00" />
-      <text x="165.00" y="135.40" text-anchor="middle"
-         font-family="Helvetica, sans-serif" font-size="14.0" >
-         00123456789128
-      </text>
-   </g>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="330" height="137" version="1.1" xmlns="http://www.w3.org/2000/svg">
+ <desc>Zint Generated Symbol</desc>
+ <g id="barcode" fill="#000000">
+  <rect x="0" y="0" width="330" height="137" fill="#FFFFFF"/>
+  <path d="M30 10h2v100h-2ZM34 10h2v100h-2ZM38 10h2v100h-2ZM42 10h2v100h-2ZM46 10h6v100h-6ZM58 10h6v100h-6ZM70 10h2v100h-2ZM74 10h6v100h-6ZM82 10h2v100h-2ZM90 10h2v100h-2ZM94 10h2v100h-2ZM98 10h6v100h-6ZM110 10h6v100h-6ZM118 10h6v100h-6ZM126 10h2v100h-2ZM134 10h2v100h-2ZM138 10h2v100h-2ZM146 10h6v100h-6ZM154 10h2v100h-2ZM162 10h6v100h-6ZM174 10h2v100h-2ZM178 10h2v100h-2ZM182 10h2v100h-2ZM190 10h2v100h-2ZM194 10h2v100h-2ZM198 10h6v100h-6ZM210 10h6v100h-6ZM218 10h2v100h-2ZM226 10h6v100h-6ZM234 10h2v100h-2ZM238 10h6v100h-6ZM246 10h2v100h-2ZM254 10h2v100h-2ZM262 10h6v100h-6ZM270 10h2v100h-2ZM274 10h2v100h-2ZM282 10h6v100h-6ZM290 10h6v100h-6ZM298 10h2v100h-2ZM0 0h330v10h-330ZM0 110h330v10h-330ZM0 10h10v100h-10ZM320 10h10v100h-10Z"/>
+  <text x="165" y="133.34" text-anchor="middle" font-family="Arimo, Arial, sans-serif" font-size="14">
+   00123456789128
+  </text>
+ </g>
 </svg>

@@ -5,7 +5,8 @@ module Zint
         isbnx_code = described_class.new(value: "9783161484100")
         svg_file = isbnx_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/isbnx.svg")).to eq svg_file
+        File.write("spec/fixtures/isbnx.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/isbnx.svg"))
       end
     end
   end

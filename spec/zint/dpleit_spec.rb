@@ -7,7 +7,8 @@ module Zint
 
         dpleit_code = described_class.new(value: "012345678912")
         dpleit_code.to_file(path: "spec/fixtures/dpleit.svg")
-        expect(File.read("spec/fixtures/dpleit.svg")).to eq svg_file
+        File.write("spec/fixtures/dpleit.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/dpleit.svg"))
       end
     end
   end

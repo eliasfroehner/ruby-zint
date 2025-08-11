@@ -5,7 +5,8 @@ module Zint
         pharma_code = described_class.new(value: "012345")
         svg_file = pharma_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/pharma.svg")).to eq svg_file
+        File.write("spec/fixtures/pharma.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/pharma.svg"))
       end
     end
   end

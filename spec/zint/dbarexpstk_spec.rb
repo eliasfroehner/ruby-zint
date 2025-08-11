@@ -5,7 +5,8 @@ module Zint
         dbarexpstk_code = described_class.new(value: "[20]12")
         svg_file = dbarexpstk_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/dbarexpstk.svg")).to eq svg_file
+        File.write("spec/fixtures/dbarexpstk.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/dbarexpstk.svg"))
       end
     end
   end

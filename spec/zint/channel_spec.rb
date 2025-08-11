@@ -5,7 +5,8 @@ module Zint
         channel_code = described_class.new(value: "0123456")
         svg_file = channel_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/channel.svg")).to eq svg_file
+        File.write("spec/fixtures/channel.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/channel.svg"))
       end
     end
   end

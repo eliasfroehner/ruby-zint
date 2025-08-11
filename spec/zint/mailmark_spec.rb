@@ -5,7 +5,8 @@ module Zint
         mailmark_code = described_class.new(value: "01000000000000000CI1K3JQ4U")
         svg_file = mailmark_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/mailmark.svg")).to eq svg_file
+        File.write("spec/fixtures/mailmark.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/mailmark.svg"))
       end
     end
   end

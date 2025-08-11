@@ -5,7 +5,8 @@ module Zint
         codabar_code = described_class.new(value: "A37859B")
         svg_file = codabar_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/codabar.svg")).to eq svg_file
+        File.write("spec/fixtures/codabar.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/codabar.svg"))
       end
     end
   end

@@ -39,8 +39,6 @@ module Zint
       end
 
       it "exports barcode to bitmap object from given value" do
-        require "digest/md5"
-
         bitmap = barcode.to_bitmap
 
         require "chunky_png"
@@ -54,7 +52,8 @@ module Zint
 
         png.save(buffer_outfile)
 
-        expect(Digest::MD5.file(buffer_outfile).hexdigest).to eq Digest::MD5.file("spec/fixtures/buffer.png").hexdigest
+        File.binwrite("spec/fixtures/buffer.png", File.binread(buffer_outfile)) if $UPDATE_ZINT_FIXTURES
+        expect(File.binread(buffer_outfile)).to eq File.binread("spec/fixtures/buffer.png")
       end
 
       it "exports barcode to bitmap only once" do
@@ -78,7 +77,8 @@ module Zint
 
         png.save(buffer_outfile)
 
-        expect(Digest::MD5.file(buffer_outfile).hexdigest).to eq Digest::MD5.file("spec/fixtures/buffer_from_input_file.png").hexdigest
+        File.binwrite("spec/fixtures/buffer_from_input_file.png", File.binread(buffer_outfile)) if $UPDATE_ZINT_FIXTURES
+        expect(File.binread(buffer_outfile)).to eq File.binread("spec/fixtures/buffer_from_input_file.png")
       end
 
       it "exports colored barcode to buffer from value" do
@@ -130,8 +130,8 @@ module Zint
       it "exports barcode to zint bitmap" do
         bitmap = barcode.to_buffer
 
-        expected_bitmap = File.read("spec/fixtures/barcode_raw_bitmap.txt")
-        expect(bitmap).to eq expected_bitmap
+        File.write("spec/fixtures/barcode_raw_bitmap.txt", bitmap) if $UPDATE_ZINT_FIXTURES
+        expect(bitmap).to eq File.read("spec/fixtures/barcode_raw_bitmap.txt")
       end
 
       it "exports barcode to buffer only once" do
@@ -159,7 +159,7 @@ module Zint
       it "exports barcode as vector with readable attributes" do
         v = described_class.new(value: "ABC").to_vector
 
-        expect(v.height.round(2)).to eq(118.9)
+        expect(v.height.round(2)).to eq(116.28)
         expect(v.width.round(2)).to eq(136.0)
       end
 
@@ -316,12 +316,6 @@ module Zint
         expect(bc.show_hrt).to eq 1
       end
 
-      it "sets and gets fontsize correctly" do
-        bc = Zint::Barcode.new fontsize: 1
-
-        expect(bc.fontsize).to eq 1
-      end
-
       it "sets and gets input_mode correctly" do
         bc = Zint::Barcode.new input_mode: 1
 
@@ -387,12 +381,6 @@ module Zint
         expect(barcode.bitmap_height).to eq 116
       end
 
-      it "gets bitmap_byte_length correctly" do
-        barcode.to_buffer
-
-        expect(barcode.bitmap_byte_length).to eq 0
-      end
-
       it "sets and gets dot_size correctly" do
         bc = Zint::Barcode.new dot_size: 1
 
@@ -416,12 +404,12 @@ module Zint
     describe "error handling" do
       it "raises matching error at .to_buffer" do
         barcode = described_class.new(value: "A" * 4096)
-        expect { barcode.to_buffer }.to raise_error(Zint::ErrorTooLong, "Error 340: Input too long (160 character maximum)")
+        expect { barcode.to_buffer }.to raise_error(Zint::ErrorTooLong, "Error 340: Input length 4096 too long (maximum 256)")
       end
 
       it "raises matching error at .to_vector" do
         barcode = described_class.new(value: "A" * 4096)
-        expect { barcode.to_vector }.to raise_error(Zint::ErrorTooLong, "Error 340: Input too long (160 character maximum)")
+        expect { barcode.to_vector }.to raise_error(Zint::ErrorTooLong, "Error 340: Input length 4096 too long (maximum 256)")
       end
     end
 

@@ -5,7 +5,8 @@ module Zint
         pdf417_code = described_class.new(value: "012345678912")
         svg_file = pdf417_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/pdf417.svg")).to eq svg_file
+        File.write("spec/fixtures/pdf417.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/pdf417.svg"))
       end
     end
   end

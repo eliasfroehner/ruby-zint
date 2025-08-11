@@ -9,28 +9,32 @@ module Zint
         qr_code_ecc_l = described_class.new(value: "Test", ecc_level: Zint::Qr::ECC_LEVEL_L)
         svg_file = qr_code_ecc_l.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/qr/qr_ecc_l.svg")).to eq svg_file
+        File.write("spec/fixtures/qr/qr_ecc_l.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/qr/qr_ecc_l.svg"))
       end
 
       it "exports ECC level M" do
         qr_code_ecc_m = described_class.new(value: "Test", ecc_level: Zint::Qr::ECC_LEVEL_M)
         svg_file = qr_code_ecc_m.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/qr/qr_ecc_m.svg")).to eq svg_file
+        File.write("spec/fixtures/qr/qr_ecc_m.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/qr/qr_ecc_m.svg"))
       end
 
       it "exports ECC level H" do
         qr_code_ecc_h = described_class.new(value: "Test", ecc_level: Zint::Qr::ECC_LEVEL_H)
         svg_file = qr_code_ecc_h.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/qr/qr_ecc_h.svg")).to eq svg_file
+        File.write("spec/fixtures/qr/qr_ecc_h.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/qr/qr_ecc_h.svg"))
       end
 
       it "exports ECC level Q" do
         qr_code_ecc_q = described_class.new(value: "Test", ecc_level: Zint::Qr::ECC_LEVEL_Q)
         svg_file = qr_code_ecc_q.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/qr/qr_ecc_q.svg")).to eq svg_file
+        File.write("spec/fixtures/qr/qr_ecc_q.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/qr/qr_ecc_q.svg"))
       end
 
       it "has correct ecc level" do

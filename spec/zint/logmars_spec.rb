@@ -5,7 +5,8 @@ module Zint
         logmars_code = described_class.new(value: "012345678912")
         svg_file = logmars_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/logmars.svg")).to eq svg_file
+        File.write("spec/fixtures/logmars.svg", svg_file) if $UPDATE_ZINT_FIXTURES
+        expect(svg_file).to eq(File.read("spec/fixtures/logmars.svg"))
       end
     end
   end
