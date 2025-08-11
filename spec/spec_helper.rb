@@ -26,7 +26,7 @@ RSpec.configure do |config|
   #
   # @return [Boolean] false by default, preventing accidental fixture updates
   def update_zint_fixtures
-    false
+    ENV["UPDATE_ZINT_FIXTURES"] == "yes"
   end
 
   # Compares SVG content against a fixture file or updates the fixture if update mode is enabled.
