@@ -8,10 +8,10 @@ module Zint
   class ZintRecipe < MiniPortileCMake
     ROOT = File.expand_path("../../..", __FILE__)
 
-    def initialize
-      super("libzint", ZINT_VERSION)
+    def initialize(name, vers, url, sha1)
+      super(name, vers)
       self.target = File.join(ROOT, "ports")
-      self.files = [url: ZINT_SOURCE_URI, sha1: ZINT_SOURCE_SHA1]
+      self.files = [url: url, sha1: sha1]
     end
 
     def cook_and_activate

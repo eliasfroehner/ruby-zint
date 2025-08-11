@@ -24,6 +24,8 @@ Gem::Specification.new do |spec|
       (File.expand_path(f) == __FILE__) || f.start_with?(*%w[bin/ test/ spec/ features/ .git .circleci appveyor])
     end
   end
+  spec.files << "ports/archives/zlib-#{Zint::LIBZ_VERSION}.tar.gz"
+  spec.files << "ports/archives/libpng-#{Zint::LIBPNG_VERSION}.tar.xz"
   spec.files << "ports/archives/zint-#{Zint::ZINT_VERSION}-src.tar.gz"
 
   spec.require_paths = ["lib"]
