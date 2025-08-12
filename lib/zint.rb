@@ -83,6 +83,7 @@ module Zint
   autoload :Dpd, "zint/dpd"
   autoload :Dpident, "zint/dpident"
   autoload :Dpleit, "zint/dpleit"
+  autoload :Dxfilmedge, "zint/dxfilmedge"
   autoload :Ean128, "zint/ean128"
   autoload :Ean14, "zint/ean14"
   autoload :Eanx, "zint/eanx"
