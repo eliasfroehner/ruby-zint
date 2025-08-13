@@ -8,23 +8,41 @@ See the [documentation](https://rubydoc.info/github/api-walker/ruby-zint) for a 
 
 ## Installation
 
+Install via RubyGems:
+
+    gem install ruby-zint
+
+This installs the binary gem, specific to the running platform by default.
+
+### Binary gem
+
+The binary gems don't depend on the libzint package on the running system or on CMake or libpng.
+They have libzint builtin and should just work.
+
+### Source gem
+
+If for some reason the binary gem doesn't work for you, the source gem can be installed alternatively.
+It can be forced by:
+
+    gem uninstall ruby-zint --all
+    gem install ruby-zint --platform ruby
+
 By default ruby-zint first tries to use libzint installed on the system.
-If libzint can't be found or if it isn't a supported version, then the zint version, bundled into the gem, is compiled and used.
+If libzint can't be found or if it isn't a supported version, then the zint version, bundled into the gem, is compiled and used instead.
 Both install methods can be enforced by using `--enable-system-libzint` or `--disable-system-libzint` options, see below.
 
-### With libzint source code (recommended)
+#### With libzint source code (recommended)
 First install CMake with your package manager (e. g. `apt install cmake`).
-
+Please also install libpng (e. g. `apt install libpng-dev`) before installing the gem if you want to use the PNG format.
 Afterwards install the gem and force builtin libzint:
 
 ```
 $ gem install ruby-zint -- --disable-system-libzint
 ```
 
-### With system libraries
+#### With system libraries
 
 Install the libzint binary with your package manager (e. g. `apt install zint` or perhaps `brew install zint`).
-
 Other platforms require building [from source](https://www.zint.org.uk/manual/chapter/2).
 
 **NOTE:** It is assumed that you are using libzint with the version [2.15](https://sourceforge.net/projects/zint/files/zint/2.15.0/).
@@ -38,15 +56,29 @@ $ gem install ruby-zint -- --enable-system-libzint
 ### Gemfile
 
 Include `gem "ruby-zint"` in your Gemfile.
+To make sure, the necessary platforms and the source gem are fetched by bundler, they can be added like so
+
+```
+bundle lock --add-platform x86_64-linux-gnu
+bundle lock --add-platform arm64-darwin
+bundle lock --add-platform x64-mingw-ucrt
+bundle lock --add-platform ruby
+bundle package --all-platforms
+```
+
+A re-run of `bundle package` is also necessary after `bundle update`, in order to retrieve the new specific gems of all platforms.
+
+If the binary gems don't work for some reason, it's easy to force the usage of the source gem in the Gemfile:
+
+```
+gem "ruby-zint", force_ruby_platform: true
+```
+
 Optionally set the install option by running bundler like so:
 
 ```
 bundle config build.ruby-zint --enable-system-libzint
 ```
-
-### PNG support
-
-Please install libpng (e. g. `apt install libpng-dev`) before installing the gem if you want to use the PNG format.
 
 ## Usage
 
