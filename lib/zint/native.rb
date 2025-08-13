@@ -7,7 +7,7 @@ module Zint
     bundled_dll = File.join(root_path, "lib/#{prefix}zint.#{FFI::Platform::LIBSUFFIX}")
     native_gem1 = File.join(root_path, "lib/3.4/libzint.#{RbConfig::CONFIG["DLEXT"]}") # This is where rake-compiler places the file in the gem
     native_gem2 = File.join(root_path, "lib/3.0/libzint.#{RbConfig::CONFIG["DLEXT"]}") # ... for non-ucrt windows builds
-    ffi_lib [bundled_dll, native_gem1, native_gem2, "libzint.so.2.12", "libzint", "zint"]
+    ffi_lib [bundled_dll, native_gem1, native_gem2, "libzint.so.2.15", "libzint", "zint"]
 
     # Error codes (API return values)
     enum :error_code, [Constants::Warnings::WARNINGS, Constants::Errors::ERRORS].map { |h| h.to_a }.flatten

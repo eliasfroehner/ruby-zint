@@ -27,7 +27,7 @@ Install the libzint binary with your package manager (e. g. `apt install zint` o
 
 Other platforms require building [from source](https://www.zint.org.uk/manual/chapter/2).
 
-**NOTE:** It is assumed that you are using libzint with the version [2.12](https://sourceforge.net/projects/zint/files/zint/2.12.0/).
+**NOTE:** It is assumed that you are using libzint with the version [2.15](https://sourceforge.net/projects/zint/files/zint/2.15.0/).
 
 Then install this gem and enforce system libzint:
 
