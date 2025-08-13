@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.email = ["apiwalker96@gmail.com"]
 
   spec.summary = "Ruby FFI binding for libzint"
-  spec.homepage = "https://github.com/api-walker/ruby-zint"
+  spec.homepage = "https://github.com/eliasfroehner/ruby-zint"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
