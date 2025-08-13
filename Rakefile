@@ -5,7 +5,7 @@ require_relative "rakelib/zint_gem_helper"
 require_relative "lib/zint/zint_recipe"
 
 CLOBBER.include "pkg"
-CLOBBER.add("ports/*").exclude(%r{ports/archives$})
+CLOBBER.add("ports/*")
 CLEAN.include "tmp"
 CLEAN.include "ext/ruby-zint/tmp"
 CLEAN.include "lib/*.a"
@@ -19,6 +19,7 @@ require "standard/rake"
 
 task default: %i[spec standard]
 
+task build: :compile # Ensure archives are downloaded as expected by the gemspec
 task gem: :build
 
 PLATFORMS = %w[
@@ -66,7 +67,8 @@ exttask = Rake::ExtensionTask.new("libzint", spec) do |ext|
 end
 
 namespace "gem" do
-  task "prepare" do
+  # Use "compile" dependency to download archives non-parallel
+  task "prepare" => "compile" do
     require "rake_compiler_dock"
     require "io/console"
     sh "bundle config set cache_all true"
