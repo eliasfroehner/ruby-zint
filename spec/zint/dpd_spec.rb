@@ -5,7 +5,7 @@ module Zint
         dpd_code = described_class.new(value: "%000393206219912345678101040")
         svg_file = dpd_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/dpd.svg")).to eq svg_file
+        expect_svg_file(svg_file, "spec/fixtures/dpd.svg")
       end
     end
   end

@@ -7,7 +7,7 @@ module Zint
 
         hibcmicpdf_code = described_class.new(value: "012345678912")
         hibcmicpdf_code.to_file(path: "spec/fixtures/hibcmicpdf.svg")
-        expect(File.read("spec/fixtures/hibcmicpdf.svg")).to eq svg_file
+        expect_svg_file(svg_file, "spec/fixtures/hibcmicpdf.svg")
       end
     end
   end

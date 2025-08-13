@@ -10,6 +10,7 @@ module Zint
       GS1NOCHECK_MODE = 0x0020 #  Do not check validity of GS1 data (except that printable ASCII only)
       HEIGHTPERROW_MODE = 0x0040 #  Interpret `height` as per-row rather than as overall height
       FAST_MODE = 0x0080 #  Use faster if less optimal encodation or other shortcuts if available (affects DATAMATRIX, MICROPDF417, PDF417, QRCODE & UPNQR only)
+      EXTRA_ESCAPE_MODE = 0x0100 # Process special symbology-specific escape sequences as well as others. Note: currently Code 128 only.
     end
   end
 end

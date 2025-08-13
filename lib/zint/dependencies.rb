@@ -3,9 +3,9 @@ module Zint
   LIBZ_SOURCE_URI = "http://zlib.net/fossils/zlib-#{LIBZ_VERSION}.tar.gz"
   LIBZ_SOURCE_SHA1 = "f535367b1a11e2f9ac3bec723fb007fbc0d189e5"
 
-  ZINT_VERSION = ENV["ZINT_VERSION"] || "2.12.0"
+  ZINT_VERSION = ENV["ZINT_VERSION"] || "2.15.0"
   ZINT_SOURCE_URI = "https://downloads.sourceforge.net/zint/zint-#{ZINT_VERSION}-src.tar.gz"
-  ZINT_SOURCE_SHA1 = "6e16036d9822895edededd96e65da755ef3fdb69"
+  ZINT_SOURCE_SHA1 = "e18966972d77feaa62a33d73d2f06ffec3356f66"
 
   LIBPNG_VERSION = ENV["LIBPNG_VERSION"] || "1.6.50"
   LIBPNG_SOURCE_URI = "https://netcologne.dl.sourceforge.net/project/libpng/libpng16/#{LIBPNG_VERSION}/libpng-#{LIBPNG_VERSION}.tar.xz"

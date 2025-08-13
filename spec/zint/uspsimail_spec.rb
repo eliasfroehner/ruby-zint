@@ -5,7 +5,7 @@ module Zint
         uspsimail_code = described_class.new(value: "01234567890123456789")
         svg_file = uspsimail_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/uspsimail.svg")).to eq svg_file
+        expect_svg_file(svg_file, "spec/fixtures/uspsimail.svg")
       end
     end
   end

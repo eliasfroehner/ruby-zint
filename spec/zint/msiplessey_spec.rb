@@ -5,7 +5,7 @@ module Zint
         msiplessey_code = described_class.new(value: "012345678912")
         svg_file = msiplessey_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/msiplessey.svg")).to eq svg_file
+        expect_svg_file(svg_file, "spec/fixtures/msiplessey.svg")
       end
     end
   end

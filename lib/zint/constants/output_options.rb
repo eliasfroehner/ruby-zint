@@ -16,6 +16,9 @@ module Zint
       BARCODE_QUIET_ZONES = 0x0800 # Add compliant quiet zones (additional to any specified whitespace); Note: CODE16K, CODE49, CODABLOCKF, ITF14, EAN/UPC have default quiet zones */
       BARCODE_NO_QUIET_ZONES = 0x1000 # Disable quiet zones, notably those with defaults as listed above */
       COMPLIANT_HEIGHT = 0x2000 # Warn if height not compliant and use standard height (if any) as default */
+      EANUPC_GUARD_WHITESPACE = 0x04000 # Add quiet zone indicators ("<"/">") to HRT whitespace (EAN/UPC) */
+      EMBED_VECTOR_FONT = 0x08000 # Embed font in vector output - currently only for SVG output */
+      BARCODE_MEMORY_FILE = 0x10000 # Write output to in-memory buffer `memfile` instead of to `outfile` */
     end
   end
 end

@@ -5,7 +5,7 @@ module Zint
         dbarexpstk_code = described_class.new(value: "[20]12")
         svg_file = dbarexpstk_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/dbarexpstk.svg")).to eq svg_file
+        expect_svg_file(svg_file, "spec/fixtures/dbarexpstk.svg")
       end
     end
   end

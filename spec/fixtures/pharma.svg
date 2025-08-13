@@ -1,25 +1,9 @@
 <?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
-   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="94" height="100" version="1.1"
-   xmlns="http://www.w3.org/2000/svg">
-   <desc>Zint Generated Symbol
-   </desc>
-
-   <g id="barcode" fill="#000000">
-      <rect x="0" y="0" width="94" height="100" fill="#FFFFFF" />
-      <rect x="0.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="10.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="16.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="22.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="28.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="34.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="40.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="46.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="56.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="66.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="76.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="82.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="92.00" y="0.00" width="2.00" height="100.00" />
-   </g>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="94" height="100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+ <desc>Zint Generated Symbol</desc>
+ <g id="barcode" fill="#000000">
+  <rect x="0" y="0" width="94" height="100" fill="#FFFFFF"/>
+  <path d="M0 0h6v100h-6ZM10 0h2v100h-2ZM16 0h2v100h-2ZM22 0h2v100h-2ZM28 0h2v100h-2ZM34 0h2v100h-2ZM40 0h2v100h-2ZM46 0h6v100h-6ZM56 0h6v100h-6ZM66 0h6v100h-6ZM76 0h2v100h-2ZM82 0h6v100h-6ZM92 0h2v100h-2Z"/>
+ </g>
 </svg>

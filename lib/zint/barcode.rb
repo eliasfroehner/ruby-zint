@@ -16,10 +16,11 @@ module Zint
 
     # @param value [String, NilClass] Content of the barcode
     # @param input_file [String, NilClass] Path to input file with content of the barcode
+    # @param segments [Array<Hash>, NilClass] Array of ECI segments to encode
     # @param symbology [Integer] Type of barcode
     # @param kwargs [Hash] Specific options for zint symbol (height, scale, ...)
-    def initialize(value: nil, input_file: nil, symbology: Zint::BARCODE_CODE128, **kwargs)
-      raise ArgumentError, "value or input_file must be given!" if value&.empty? && input_file&.empty?
+    def initialize(value: nil, input_file: nil, segments: nil, symbology: Zint::BARCODE_CODE128, **kwargs)
+      raise ArgumentError, "value, input_file or segments must be given!" if value&.empty? && input_file&.empty? && segments.nil?
       raise ArgumentError, "input_file not found!" if input_file && !File.exist?(input_file)
 
       @zint_symbol = Native.ZBarcode_Create
@@ -30,6 +31,7 @@ module Zint
 
       @value = value
       @input_file = input_file
+      encode_segments(segments)
     end
 
     # Exports barcode to file
@@ -46,6 +48,8 @@ module Zint
 
       if input_file
         call_function(:ZBarcode_Encode_File_and_Print, @zint_symbol, input_file, rotate_angle)
+      elsif @p_segments
+        call_seg_function(:ZBarcode_Encode_Segs_and_Print, rotate_angle)
       else
         call_function(:ZBarcode_Encode_and_Print, @zint_symbol, value, value.bytesize, rotate_angle)
       end
@@ -57,17 +61,11 @@ module Zint
     # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
     # @return [String] Exported memory file
     def to_memory_file(extension: ".png", rotate_angle: 0)
-      require "tempfile"
-      file = Tempfile.new(["zint", extension])
+      @zint_symbol[:output_options] = Zint::BARCODE_MEMORY_FILE
 
-      to_file(path: file.path, rotate_angle: rotate_angle)
+      to_file(path: extension, rotate_angle: rotate_angle)
 
-      file.rewind
-      buffer = file.read
-      file.close
-      file.unlink
-
-      buffer
+      @zint_symbol[:memfile].read_bytes(@zint_symbol[:memfile_size])
     end
 
     # Exports barcode to buffer
@@ -82,6 +80,8 @@ module Zint
 
       if input_file
         call_function(:ZBarcode_Encode_File_and_Buffer, @zint_symbol, input_file, rotate_angle)
+      elsif @p_segments
+        call_seg_function(:ZBarcode_Encode_Segs_and_Buffer, rotate_angle)
       else
         call_function(:ZBarcode_Encode_and_Buffer, @zint_symbol, value, value.bytesize, rotate_angle)
       end
@@ -116,6 +116,8 @@ module Zint
       end
       if input_file
         call_function(:ZBarcode_Encode_File_and_Buffer_Vector, @zint_symbol, input_file, rotate_angle)
+      elsif @p_segments
+        call_seg_function(:ZBarcode_Encode_Segs_and_Buffer_Vector, rotate_angle)
       else
         call_function(:ZBarcode_Encode_and_Buffer_Vector, @zint_symbol, value, value.bytesize, rotate_angle)
       end
@@ -134,6 +136,8 @@ module Zint
     def encode
       if input_file
         call_function(:ZBarcode_Encode_File, @zint_symbol, input_file)
+      elsif @p_segments
+        call_seg_function(:ZBarcode_Encode_Segs)
       else
         call_function(:ZBarcode_Encode, @zint_symbol, value, value.bytesize)
       end
@@ -314,18 +318,6 @@ module Zint
       @zint_symbol[:show_hrt] = show_hrt
     end
 
-    # Gets font size of barcode
-    def fontsize
-      @zint_symbol[:fontsize]
-    end
-
-    # Sets font size of barcode (Unused)
-    #
-    # @param fontsize [Integer] Font size of barcode
-    def fontsize=(fontsize)
-      @zint_symbol[:fontsize] = fontsize
-    end
-
     # Gets input mode of barcode
     def input_mode
       @zint_symbol[:input_mode]
@@ -388,7 +380,7 @@ module Zint
 
     # Human Readable Text, which usually consists of input data plus one more check digit. Uses UTF-8 formatting.
     def text
-      @zint_symbol[:text].to_s.force_encoding(Encoding::UTF_8)
+      @zint_symbol[:text].to_ptr.read_bytes(@zint_symbol[:text_length]).force_encoding(Encoding::UTF_8)
     end
 
     # Gets rows of barcode
@@ -479,11 +471,6 @@ module Zint
       @zint_symbol[:bitmap_height]
     end
 
-    # Gets bitmap byte length of barcode
-    def bitmap_byte_length
-      @zint_symbol[:bitmap_byte_length]
-    end
-
     # Gets dot size of barcode
     def dot_size
       @zint_symbol[:dot_size]
@@ -534,6 +521,30 @@ module Zint
       end
 
       error_code
+    end
+
+    def call_seg_function(function_name, *args)
+      call_function(function_name, @zint_symbol, @p_segments, @p_strings.size, *args)
+    end
+
+    def encode_segments(segments)
+      @p_segments = nil
+      return unless segments
+
+      raise ArgumentError, "segments must be Array<Hash<source: String, eci: Integer>>!" if !segments.is_a?(Array) || !segments.first.is_a?(Hash)
+
+      @p_segments = FFI::MemoryPointer.new Structs::Seg, segments.size
+      @p_strings = [] # Prevent garbage collection
+      segments.each_with_index do |seg, sidx|
+        p_seg = Structs::Seg.new(@p_segments + Structs::Seg.size * sidx)
+        source = seg[:source] || raise(ArgumentError, ":source not defined")
+        eci = seg[:eci] || raise(ArgumentError, ":eci not defined")
+
+        @p_strings << FFI::MemoryPointer.from_string(source)
+        p_seg[:source] = @p_strings.last
+        p_seg[:length] = source.bytesize
+        p_seg[:eci] = eci
+      end
     end
   end
 end

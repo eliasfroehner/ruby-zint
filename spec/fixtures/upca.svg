@@ -1,58 +1,21 @@
 <?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
-   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="226" height="117" version="1.1"
-   xmlns="http://www.w3.org/2000/svg">
-   <desc>Zint Generated Symbol
-   </desc>
-
-   <g id="barcode" fill="#000000">
-      <rect x="0" y="0" width="226" height="117" fill="#FFFFFF" />
-      <rect x="18.00" y="0.00" width="2.00" height="110.00" />
-      <rect x="22.00" y="0.00" width="2.00" height="110.00" />
-      <rect x="30.00" y="0.00" width="4.00" height="110.00" />
-      <rect x="36.00" y="0.00" width="2.00" height="110.00" />
-      <rect x="42.00" y="0.00" width="4.00" height="100.00" />
-      <rect x="50.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="56.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="62.00" y="0.00" width="4.00" height="100.00" />
-      <rect x="68.00" y="0.00" width="8.00" height="100.00" />
-      <rect x="78.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="82.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="90.00" y="0.00" width="4.00" height="100.00" />
-      <rect x="96.00" y="0.00" width="4.00" height="100.00" />
-      <rect x="106.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="110.00" y="0.00" width="2.00" height="110.00" />
-      <rect x="114.00" y="0.00" width="2.00" height="110.00" />
-      <rect x="118.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="122.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="132.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="140.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="146.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="152.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="160.00" y="0.00" width="6.00" height="100.00" />
-      <rect x="168.00" y="0.00" width="2.00" height="100.00" />
-      <rect x="174.00" y="0.00" width="4.00" height="100.00" />
-      <rect x="182.00" y="0.00" width="4.00" height="100.00" />
-      <rect x="188.00" y="0.00" width="4.00" height="110.00" />
-      <rect x="194.00" y="0.00" width="4.00" height="110.00" />
-      <rect x="202.00" y="0.00" width="2.00" height="110.00" />
-      <rect x="206.00" y="0.00" width="2.00" height="110.00" />
-      <text x="8.00" y="116.00" text-anchor="end"
-         font-family="Helvetica, sans-serif" font-size="14.0" >
-         0
-      </text>
-      <text x="72.00" y="116.00" text-anchor="middle"
-         font-family="Helvetica, sans-serif" font-size="20.0" >
-         12345
-      </text>
-      <text x="152.00" y="116.00" text-anchor="middle"
-         font-family="Helvetica, sans-serif" font-size="20.0" >
-         67891
-      </text>
-      <text x="218.00" y="116.00" text-anchor="start"
-         font-family="Helvetica, sans-serif" font-size="14.0" >
-         2
-      </text>
-   </g>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="226" height="118" version="1.1" xmlns="http://www.w3.org/2000/svg">
+ <desc>Zint Generated Symbol</desc>
+ <g id="barcode" fill="#000000">
+  <rect x="0" y="0" width="226" height="118" fill="#FFFFFF"/>
+  <path d="M18 0h2v110h-2ZM22 0h2v110h-2ZM30 0h4v110h-4ZM36 0h2v110h-2ZM42 0h4v100h-4ZM50 0h2v100h-2ZM56 0h2v100h-2ZM62 0h4v100h-4ZM68 0h8v100h-8ZM78 0h2v100h-2ZM82 0h2v100h-2ZM90 0h4v100h-4ZM96 0h4v100h-4ZM106 0h2v100h-2ZM110 0h2v110h-2ZM114 0h2v110h-2ZM118 0h2v100h-2ZM122 0h2v100h-2ZM132 0h2v100h-2ZM140 0h2v100h-2ZM146 0h2v100h-2ZM152 0h2v100h-2ZM160 0h6v100h-6ZM168 0h2v100h-2ZM174 0h4v100h-4ZM182 0h4v100h-4ZM188 0h4v110h-4ZM194 0h4v110h-4ZM202 0h2v110h-2ZM206 0h2v110h-2Z"/>
+  <text x="8.7" y="117.2" text-anchor="end" font-family="OCRB, monospace" font-size="14">
+   0
+  </text>
+  <text x="74" y="117.2" text-anchor="middle" font-family="OCRB, monospace" font-size="20">
+   12345
+  </text>
+  <text x="152" y="117.2" text-anchor="middle" font-family="OCRB, monospace" font-size="20">
+   67891
+  </text>
+  <text x="215.3" y="117.2" text-anchor="start" font-family="OCRB, monospace" font-size="14">
+   2
+  </text>
+ </g>
 </svg>

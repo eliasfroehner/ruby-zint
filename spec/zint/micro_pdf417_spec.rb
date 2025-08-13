@@ -5,7 +5,7 @@ module Zint
         micropdf417_code = described_class.new(value: "012345678912")
         svg_file = micropdf417_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/micropdf417.svg")).to eq svg_file
+        expect_svg_file(svg_file, "spec/fixtures/micropdf417.svg")
       end
     end
   end

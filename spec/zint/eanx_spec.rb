@@ -5,7 +5,7 @@ module Zint
         eanx_code = described_class.new(value: "012345678912")
         svg_file = eanx_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/eanx.svg")).to eq svg_file
+        expect_svg_file(svg_file, "spec/fixtures/eanx.svg")
       end
     end
 

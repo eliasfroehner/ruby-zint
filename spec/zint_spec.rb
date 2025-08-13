@@ -4,7 +4,7 @@ RSpec.describe Zint do
   end
 
   it "has a library version number" do
-    expect(Zint.library_version).to eq 21200
+    expect(Zint.library_version).to eq 21500
   end
 
   describe "errors" do
@@ -19,7 +19,8 @@ RSpec.describe Zint do
         11 => Zint::ErrorMemory,
         12 => Zint::ErrorFileWrite,
         13 => Zint::ErrorUsesEci,
-        14 => Zint::ErrorNoncompliant
+        14 => Zint::ErrorNoncompliant,
+        15 => Zint::ErrorHrtTruncated
       })
     end
   end

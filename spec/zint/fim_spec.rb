@@ -5,7 +5,7 @@ module Zint
         fim_code = described_class.new(value: "A")
         svg_file = fim_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/fim.svg")).to eq svg_file
+        expect_svg_file(svg_file, "spec/fixtures/fim.svg")
       end
     end
   end

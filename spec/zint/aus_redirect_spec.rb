@@ -5,7 +5,7 @@ module Zint
         ausredirect_code = described_class.new(value: "96184209")
         svg_file = ausredirect_code.to_memory_file(extension: ".svg")
 
-        expect(File.read("spec/fixtures/ausredirect.svg")).to eq svg_file
+        expect_svg_file(svg_file, "spec/fixtures/ausredirect.svg")
       end
     end
   end

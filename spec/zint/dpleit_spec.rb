@@ -7,7 +7,7 @@ module Zint
 
         dpleit_code = described_class.new(value: "012345678912")
         dpleit_code.to_file(path: "spec/fixtures/dpleit.svg")
-        expect(File.read("spec/fixtures/dpleit.svg")).to eq svg_file
+        expect_svg_file(svg_file, "spec/fixtures/dpleit.svg")
       end
     end
   end
