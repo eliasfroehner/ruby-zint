@@ -14,8 +14,12 @@ module Zint
       self.files = [url: url, sha1: sha1]
     end
 
+    def port_path
+      "#{target}/#{RUBY_PLATFORM}"
+    end
+
     def cook_and_activate
-      checkpoint = File.join(target, "#{name}-#{version}-#{host}.installed")
+      checkpoint = File.join(target, "#{name}-#{version}-#{RUBY_PLATFORM}.installed")
       unless File.exist?(checkpoint)
         cook
         FileUtils.touch checkpoint
