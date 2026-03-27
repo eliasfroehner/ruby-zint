@@ -76,7 +76,7 @@ def build_bundled_libzint
   recipe = Zint::ZintRecipe.new("libzint", Zint::ZINT_VERSION, Zint::ZINT_SOURCE_URI, Zint::ZINT_SOURCE_SHA256)
   recipe.configure_options += [
     "-DZLIB_INCLUDE_DIR=#{recipe_zlib.path}/include",
-    "-DZLIB_LIBRARY=#{recipe_zlib.path}/lib/#{(RUBY_PLATFORM =~ /mingw/) ? "libzlibstatic.a" : "libz.a"}",
+    "-DZLIB_LIBRARY=#{recipe_zlib.path}/lib/#{(RUBY_PLATFORM =~ /mingw/) ? "libzs.a" : "libz.a"}",
     "-DPNG_PNG_INCLUDE_DIR=#{recipe_png.path}/include",
     "-DPNG_LIBRARY=#{recipe_png.path}/lib/libpng.a"
   ]
