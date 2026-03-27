@@ -25,6 +25,7 @@ task gem: :build
 PLATFORMS = %w[
   aarch64-linux-gnu
   aarch64-linux-musl
+  aarch64-mingw-ucrt
   arm-linux-gnu
   arm-linux-musl
   arm64-darwin
@@ -93,8 +94,8 @@ namespace "gem" do
 
       RakeCompilerDock.sh <<-EOT, platform: plat
         (cp build/gem/gem-*.pem ~/.gem/ || true) &&
-        bundle --local &&
-        echo '/usr/bin/*-w64-mingw32-windres "$@"' | sudo tee /usr/local/bin/windres && sudo chmod +x /usr/local/bin/windres &&
+        bundle install --local &&
+        echo '/usr/bin/*-w64-mingw32-windres "$@" || /llvm-mingw/bin/*-w64-mingw32-windres "$@"' | sudo tee /usr/local/bin/windres && sudo chmod +x /usr/local/bin/windres &&
         rake native:#{plat} pkg/#{exttask.gem_spec.full_name}-#{plat}.gem RUBY_CC_VERSION=#{RakeCompilerDock.ruby_cc_version(cc_version)}:0.0.0 MAKE="make -j12 VERBOSE=1"
       EOT
     end

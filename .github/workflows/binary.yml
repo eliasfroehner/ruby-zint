@@ -12,6 +12,7 @@ jobs:
         include:
           - platform: "aarch64-linux-gnu"
           - platform: "aarch64-linux-musl"
+          - platform: "aarch64-mingw-ucrt"
           - platform: "arm-linux-gnu"
           - platform: "arm-linux-musl"
           - platform: "arm64-darwin"
@@ -23,13 +24,12 @@ jobs:
           - platform: "x86_64-darwin"
           - platform: "x86_64-linux-gnu"
           - platform: "x86_64-linux-musl"
-          # - platform: "aarch64-mingw-ucrt"
     steps:
       - uses: actions/checkout@v4
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3"
+          ruby-version: "4.0"
       - run: bundle install
 
       - name: Create a dummy cert to satisfy the build
@@ -56,7 +56,7 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            ruby: "3.4"
+            ruby: "4.0"
             platform: "x64-mingw-ucrt"
           - os: windows-latest
             ruby: "3.2"
@@ -65,14 +65,17 @@ jobs:
             ruby: "3.2"
             platform: "x86_64-linux-gnu"
           - os: ubuntu-24.04-arm
-            ruby: "3.4"
+            ruby: "4.0"
             platform: "aarch64-linux-gnu"
           - os: macos-latest
-            ruby: "3.4"
+            ruby: "4.0"
             platform: "arm64-darwin"
-          - os: macos-13
-            ruby: "3.4"
+          - os: macos-15-intel
+            ruby: "4.0"
             platform: "x86_64-darwin"
+          - os: windows-11-arm
+            ruby: "4.0"
+            platform: "aarch64-mingw-ucrt"
 
     runs-on: ${{ matrix.os }}
     steps:
