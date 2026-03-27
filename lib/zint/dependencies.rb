@@ -1,15 +1,15 @@
 module Zint
-  LIBZ_VERSION = ENV["LIBZ_VERSION"] || "1.3.1"
+  LIBZ_VERSION = ENV["LIBZ_VERSION"] || "1.3.2"
   LIBZ_SOURCE_URI = "http://zlib.net/fossils/zlib-#{LIBZ_VERSION}.tar.gz"
-  LIBZ_SOURCE_SHA1 = "f535367b1a11e2f9ac3bec723fb007fbc0d189e5"
+  LIBZ_SOURCE_SHA256 = "bb329a0a2cd0274d05519d61c667c062e06990d72e125ee2dfa8de64f0119d16"
 
   ZINT_VERSION = ENV["ZINT_VERSION"] || "2.15.0"
   ZINT_SOURCE_URI = "https://downloads.sourceforge.net/zint/zint-#{ZINT_VERSION}-src.tar.gz"
-  ZINT_SOURCE_SHA1 = "e18966972d77feaa62a33d73d2f06ffec3356f66"
+  ZINT_SOURCE_SHA256 = "bce37d9b86e6127cac63c8b6267ac421116d4ac086519d726eb724f5462d98c7"
 
-  LIBPNG_VERSION = ENV["LIBPNG_VERSION"] || "1.6.50"
-  LIBPNG_SOURCE_URI = "https://netcologne.dl.sourceforge.net/project/libpng/libpng16/#{LIBPNG_VERSION}/libpng-#{LIBPNG_VERSION}.tar.xz"
-  LIBPNG_SOURCE_SHA1 = "ecd92ba84628a8ace430706c85fd2fb26ba0882c"
+  LIBPNG_VERSION = ENV["LIBPNG_VERSION"] || "1.6.56"
+  LIBPNG_SOURCE_URI = "https://download.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.xz"
+  LIBPNG_SOURCE_SHA256 = "f7d8bf1601b7804f583a254ab343a6549ca6cf27d255c302c47af2d9d36a6f18"
 
   MINI_PORTILE_VERSION = "~> 2.1"
 end

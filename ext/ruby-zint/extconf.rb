@@ -58,14 +58,14 @@ def build_bundled_libzint
   puts "Build libzint and dependencies"
   require_relative "../../lib/zint/zint_recipe"
 
-  recipe_zlib = Zint::ZintRecipe.new("zlib", Zint::LIBZ_VERSION, Zint::LIBZ_SOURCE_URI, Zint::LIBZ_SOURCE_SHA1)
+  recipe_zlib = Zint::ZintRecipe.new("zlib", Zint::LIBZ_VERSION, Zint::LIBZ_SOURCE_URI, Zint::LIBZ_SOURCE_SHA256)
   recipe_zlib.configure_options += [
     "-DCMAKE_C_FLAGS=-fPIC",
     "-DZLIB_SHARED=OFF"
   ]
   recipe_zlib.cook_and_activate
 
-  recipe_png = Zint::ZintRecipe.new("libpng", Zint::LIBPNG_VERSION, Zint::LIBPNG_SOURCE_URI, Zint::LIBPNG_SOURCE_SHA1)
+  recipe_png = Zint::ZintRecipe.new("libpng", Zint::LIBPNG_VERSION, Zint::LIBPNG_SOURCE_URI, Zint::LIBPNG_SOURCE_SHA256)
   recipe_png.configure_options += [
     "-DCMAKE_C_FLAGS=-fPIC",
     "-DZLIB_ROOT=#{recipe_zlib.path}",
@@ -73,7 +73,7 @@ def build_bundled_libzint
   ]
   recipe_png.cook_and_activate
 
-  recipe = Zint::ZintRecipe.new("libzint", Zint::ZINT_VERSION, Zint::ZINT_SOURCE_URI, Zint::ZINT_SOURCE_SHA1)
+  recipe = Zint::ZintRecipe.new("libzint", Zint::ZINT_VERSION, Zint::ZINT_SOURCE_URI, Zint::ZINT_SOURCE_SHA256)
   recipe.configure_options += [
     "-DZLIB_INCLUDE_DIR=#{recipe_zlib.path}/include",
     "-DZLIB_LIBRARY=#{recipe_zlib.path}/lib/#{(RUBY_PLATFORM =~ /mingw/) ? "libzlibstatic.a" : "libz.a"}",

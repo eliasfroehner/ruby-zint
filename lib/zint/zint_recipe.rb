@@ -8,10 +8,10 @@ module Zint
   class ZintRecipe < MiniPortileCMake
     ROOT = File.expand_path("../../..", __FILE__)
 
-    def initialize(name, vers, url, sha1)
+    def initialize(name, vers, url, sha256)
       super(name, vers)
       self.target = File.join(ROOT, "ports")
-      self.files = [url: url, sha1: sha1]
+      self.files = [url: url, sha256: sha256]
     end
 
     def port_path
