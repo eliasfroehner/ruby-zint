@@ -55,20 +55,20 @@ module Zint
       end
     end
 
-    # Exports barcode to memory file
+    # Exports barcode to image file as a string
     #
     # @param extension [String] Extension exported memory file
     # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
     # @return [String] Exported memory file
     def to_memory_file(extension: ".png", rotate_angle: 0)
-      @zint_symbol[:output_options] = Zint::BARCODE_MEMORY_FILE
+      @zint_symbol[:output_options] |= Zint::BARCODE_MEMORY_FILE
 
       to_file(path: extension, rotate_angle: rotate_angle)
 
       @zint_symbol[:memfile].read_bytes(@zint_symbol[:memfile_size])
     end
 
-    # Exports barcode to buffer
+    # Exports barcode to bitmap data as a string buffer
     #
     # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
     # @return [String] Exported barcode buffer
@@ -76,7 +76,7 @@ module Zint
       unless @zint_symbol[:bitmap].null?
         raise AlreadyGenerated, "to_vector was already executed"
       end
-      @zint_symbol[:output_options] = Zint::OUT_BUFFER_INTERMEDIATE
+      @zint_symbol[:output_options] |= Zint::OUT_BUFFER_INTERMEDIATE
 
       if input_file
         call_function(:ZBarcode_Encode_File_and_Buffer, @zint_symbol, input_file, rotate_angle)
@@ -89,7 +89,7 @@ module Zint
       @zint_symbol[:bitmap].read_bytes(@zint_symbol[:bitmap_width] * @zint_symbol[:bitmap_height])
     end
 
-    # Exports barcode to buffer
+    # Exports barcode as a Zint::Bitmap
     #
     # @param rotate_angle [Integer] Rotate angle in degrees (0, 90, 180, 270)
     # @return [Zint::Bitmap] Exported bitmap
@@ -403,6 +403,22 @@ module Zint
     # @param primary [String] Primary of barcode
     def primary=(primary)
       @zint_symbol[:primary] = primary
+    end
+
+    # Return array of content segs if Zint::Constants::OutputOptions::BARCODE_CONTENT_SEGS output option is set
+    #
+    # Strings are pre-converted, i.e. UTF-8 unless input mode is Zint::Constants::InputDataTypes::DATA_MODE
+    #
+    # @return [Array<Zint::Structs::Seg>, NilClass]
+    def content_segs
+      ptr = @zint_symbol[:content_segs].to_ptr
+      return if ptr.null?
+      @zint_symbol[:content_seg_count].times.map do |i|
+        seg = Zint::Structs::Seg.new(ptr + Zint::Structs::Seg.size * i)
+        # Avoid garbage collection of Symbol before Seg, since the Seg is also freed by ZBarcode_Delete()
+        seg.instance_variable_set(:@symbol, @zint_symbol)
+        seg
+      end
     end
 
     # Gets encoded data of barcode as internal FFI::StructLayout::CharArray object

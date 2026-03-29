@@ -31,22 +31,20 @@ module Zint
         :text_length, :int, # int text_length;    /* Length of text in bytes (output only) */
         :rows, :int, # Number of rows used by the symbol (output only)
         :width, :int, # Width of the generated symbol (output only)
-        :encoded_data, [:uchar, 200 * 144], # Encoded data (output only). Allows for rows of 1152 modules
-        :row_height, [:float, 200], # Heights of rows (output only). Allows for 200 row DotCode
-        :errtxt, [:char, 100], # Error message if an error or warning occurs, NUL-terminated (output only)
+        :errtxt, [:char, 160], # Error message if an error or warning occurs, NUL-terminated (output only)
         :bitmap, :pointer, # Stored bitmap image (raster output only)
         :bitmap_width, :int, # Width of bitmap image (raster output only)
         :bitmap_height, :int, # Height of bitmap image (raster output only)
         :alphamap, :pointer, # Array of alpha values used (raster output only)
         :vector, Vector.by_ref, # Pointer to vector header (vector output only)
         :memfile, :pointer, # unsigned char *memfile; /* Pointer to in-memory file buffer if BARCODE_MEMORY_FILE (output only) */
-        :memfile_size, :int # int memfile_size;   /* Length of in-memory file buffer (output only) */
-
-      # Upcomming zint-2.16:
-      # struct zint_seg *raw_segs; /* Pointer to array of raw segs if BARCODE_RAW_TEXT (output only) */
-      # :raw_segs, Seg.by_ref,
-      # int raw_seg_count;  /* Number of `raw_segs` (output only) */
-      # :raw_seg_count, :int
+        :memfile_size, :int, # int memfile_size;   /* Length of in-memory file buffer (output only) */
+        # struct zint_seg *content_segs; /* Pointer to array of content segs if BARCODE_CONTENT_SEGS (output only) */
+        :content_segs, Seg.by_ref,
+        # int content_seg_count; /* Number of `content_segs` (output only) */
+        :content_seg_count, :int,
+        :encoded_data, [:uchar, 200 * 144], # Encoded data (output only). Allows for rows of 1152 modules
+        :row_height, [:float, 200] # Heights of rows (output only). Allows for 200 row DotCode
 
       # @private
       def self.release(ptr)

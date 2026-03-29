@@ -19,6 +19,7 @@ module Zint
       EANUPC_GUARD_WHITESPACE = 0x04000 # Add quiet zone indicators ("<"/">") to HRT whitespace (EAN/UPC) */
       EMBED_VECTOR_FONT = 0x08000 # Embed font in vector output - currently only for SVG output */
       BARCODE_MEMORY_FILE = 0x10000 # Write output to in-memory buffer `memfile` instead of to `outfile` */
+      BARCODE_CONTENT_SEGS = 0x20000 # Write data encoded to content segment buffers `content_segs`
     end
   end
 end
