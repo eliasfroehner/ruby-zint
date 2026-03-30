@@ -42,7 +42,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }} # passed to ruby/setup-ruby
           apt-get: 'libpng-dev' # Ubuntu
-          brew: 'cmake libpng qt5' # macOS
+          brew: 'cmake libpng qt6' # macOS
 
       - name: Ubuntu build zint
         if: matrix.os == 'ubuntu' && matrix.builtin != 'true'

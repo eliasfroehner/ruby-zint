@@ -1,8 +1,15 @@
 source "https://rubygems.org"
 
 # Specify your gem's dependencies in ruby-zint.gemspec
-gemspec
+#
+# When enabled building binary gems fails with:
+#   Source locally installed gems is ignoring #<Bundler::StubSpecification name=ruby-zint version=1.5.0 platform=ruby> because it is missing extensions
+#   Missing gem file 'ruby-zint-1.5.0.gem'.
+#   rake aborted!
+#
+# gemspec
 
+gem "ffi"
 gem "rake", "~> 13.0"
 
 gem "rspec", "~> 3.0"
