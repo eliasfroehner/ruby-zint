@@ -12,8 +12,12 @@ module Zint
       BARCODE_C25IND = 7 #  2 of 5 Industrial
       BARCODE_CODE39 = 8 #  Code 39
       BARCODE_EXCODE39 = 9 #  Extended Code 39
-      BARCODE_EANX = 13 #  EAN (European Article Number)
-      BARCODE_EANX_CHK = 14 #  EAN + Check Digit
+      BARCODE_EAN8 = 10  # EAN-8 (European Article Number) GTIN-8
+      BARCODE_EAN_2ADDON = 11  # EAN/UPC 2-digit add-on (standalone)
+      BARCODE_EAN_5ADDON = 12  # EAN/UPC 5-digit add-on (standalone)
+      BARCODE_EANX = 13  # Legacy
+      BARCODE_EANX_CHK = 14  # Legacy
+      BARCODE_EAN13 = 15  # EAN-13 (European Article Number) GTIN-13
       BARCODE_GS1_128 = 16 #  GS1-128
       BARCODE_EAN128 = 16 #  Legacy
       BARCODE_CODABAR = 18 #  Codabar
@@ -132,7 +136,9 @@ module Zint
       BARCODE_RMQR = 145 #  Rectangular Micro QR Code (rMQR)
       BARCODE_BC412 = 146 # IBM BC412 (SEMI T1-95)
       BARCODE_DXFILMEDGE = 147 # DX Film Edge Barcode on 35mm and APS films
-      BARCODE_LAST = 147 # Max barcode number marker, not barcode
+      BARCODE_EAN8_CC = 148 # EAN-8 Composite
+      BARCODE_EAN13_CC = 149 # EAN-13 Composite
+      BARCODE_LAST = 149 # Max barcode number marker, not barcode
     end
   end
 end

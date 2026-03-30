@@ -16,6 +16,7 @@ module Zint
       ZINT_CAP_MASK = 0x0800 # Is mask selectable? */
       ZINT_CAP_STRUCTAPP = 0x1000 # Supports Structured Append? */
       ZINT_CAP_COMPLIANT_HEIGHT = 0x2000 # Has compliant height? */
+      ZINT_CAP_BINDABLE = 0x4000  # Can set row separators?
     end
   end
 end

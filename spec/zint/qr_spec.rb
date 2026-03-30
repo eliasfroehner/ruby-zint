@@ -80,6 +80,30 @@ module Zint
 
         expect_svg_file(svg_file, "spec/fixtures/qr-code-with-multi-segments.svg")
       end
+
+      it "should output multiple segments" do
+        # This code should be read as: "ΚείμενοТекст文章"
+        barcode = Zint::Barcode.new(segments: [{source: "Κείμενο".encode("ISO-8859-7"), eci: 9}, {source: "Текст".encode("ISO-8859-5"), eci: 7}, {source: "文章".encode("SHIFT_JIS"), eci: 20}], symbology: Zint::BARCODE_QRCODE)
+
+        barcode.output_options = Zint::Constants::OutputOptions::BARCODE_CONTENT_SEGS
+
+        barcode.to_buffer
+        segs = barcode.content_segs.map do |seg|
+          [seg.source, seg.eci]
+        end
+
+        expect(segs).to eq(
+           [["\xCA\xE5\xDF\xEC\xE5\xED\xEF".b, 9],
+             ["\xC2\xD5\xDA\xE1\xE2".b, 7],
+             ["\x95\xB6\x8F\xCD".b, 20]]
+         )
+      end
+
+      it "should output nil when no segments" do
+        barcode = Zint::Qr.new(segments: [{source: "Κείμενο".encode("ISO-8859-7"), eci: 9}, {source: "Текст".encode("ISO-8859-5"), eci: 7}, {source: "文章".encode("SHIFT_JIS"), eci: 20}])
+
+        expect(barcode.content_segs).to be_nil
+      end
     end
   end
 end

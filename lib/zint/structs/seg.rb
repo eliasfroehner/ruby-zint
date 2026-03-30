@@ -1,18 +1,18 @@
 module Zint
   module Structs
     class Seg < FFI::Struct
-      # /* Segment for use with `raw_segs` and API `ZBarcode_Encode_Segs()` */
+      # /* Segment for use with `content_segs` and API `ZBarcode_Encode_Segs()` */
       # struct zint_seg {
-      #     unsigned char *source; /* Data to encode, or (`raw_segs`) data encoded */
+      #     unsigned char *source; /* Data to encode, or (`content_segs`) data encoded */
       #     int length;         /* Length of `source`. If 0 or negative, `source` must be NUL-terminated */
       #     int eci;            /* Extended Channel Interpretation */
       # };
 
-      layout :source, :pointer, # Data to encode, or (`raw_segs`) data encoded
+      layout :source, :pointer, # Data to encode, or (`content_segs`) data encoded
         :length, :int, # Length of `source`. If 0 or negative, `source` must be NUL-terminated
         :eci, :int # Extended Channel Interpretation
 
-      # Data to encode, or (`raw_segs`) data encoded
+      # Data to encode, or (`content_segs`) data encoded
       def source
         self[:source].read_bytes(self[:length])
       end

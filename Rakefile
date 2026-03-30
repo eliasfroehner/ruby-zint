@@ -52,7 +52,7 @@ exttask = Rake::ExtensionTask.new("libzint", spec) do |ext|
   ext.config_options << "--disable-system-libzint"
   ext.cross_compile = true
   ext.cross_platform = PLATFORMS.select do |pl|
-    m = ENV["RCD_IMAGE"]&.match(/:(?<ruby_ver>[\d\.]+)-mri-(?<platform>[-\w]+)$/)
+    m = ENV["RCD_IMAGE"]&.match(/:(?<ruby_ver>[\d.]+)-mri-(?<platform>[-\w]+)$/)
     m && m[:platform] == pl
   end
   ext.cross_compiling do |spec|
