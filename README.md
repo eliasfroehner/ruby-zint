@@ -4,7 +4,7 @@
 
 This gem is a Ruby FFI binding for the [libzint](http://www.zint.org.uk) barcode generation library.
 
-See the [documentation](https://rubydoc.info/github/api-walker/ruby-zint) for a full API description.
+See the [documentation](https://rubydoc.info/gems/ruby-zint) for a full API description.
 
 ## Installation
 
