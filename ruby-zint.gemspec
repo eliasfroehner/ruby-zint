@@ -4,8 +4,8 @@ require_relative "lib/zint/dependencies"
 Gem::Specification.new do |spec|
   spec.name = "ruby-zint"
   spec.version = Zint::VERSION
-  spec.authors = ["Elias Fröhner"]
-  spec.email = ["apiwalker96@gmail.com"]
+  spec.authors = ["Elias Fröhner", "Lars Kanis"]
+  spec.email = ["apiwalker96@gmail.com", "lars@greiz-reinsdorf.de"]
 
   spec.summary = "Ruby FFI binding for libzint"
   spec.homepage = "https://github.com/eliasfroehner/ruby-zint"
