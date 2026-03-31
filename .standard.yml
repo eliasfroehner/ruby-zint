@@ -1,5 +1,5 @@
 parallel: true
 format: progress
-ruby_version: 2.6
+ruby_version: 3.0
 ignore:
   - 'ext/ruby-zint/tmp/**/*'

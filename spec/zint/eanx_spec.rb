@@ -1,13 +1,11 @@
 module Zint
   RSpec.describe :Eanx do
-    if RUBY_VERSION >= "2.7."
-      before :all do
-        prev_deprecated = Warning[:deprecated]
-        Warning[:deprecated] = true
-        expect { Eanx }.to output(%r{deprecated.*spec/zint/eanx_spec}).to_stderr
-      ensure
-        Warning[:deprecated] = prev_deprecated
-      end
+    before :all do
+      prev_deprecated = Warning[:deprecated]
+      Warning[:deprecated] = true
+      expect { Eanx }.to output(%r{deprecated.*spec/zint/eanx_spec}).to_stderr
+    ensure
+      Warning[:deprecated] = prev_deprecated
     end
 
     describe "export" do
