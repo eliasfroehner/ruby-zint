@@ -217,16 +217,16 @@ module Zint
 
     describe "attributes" do
       it "sets and gets value" do
-        barcode = Zint::Eanx.new value: "1234567"
+        barcode = Zint::Ean8.new value: "1234567"
         expect(barcode.value).to eq "1234567"
 
-        barcode = Zint::Eanx.new
+        barcode = Zint::Ean8.new
         barcode.value = "2345678"
         expect(barcode.value).to eq "2345678"
       end
 
       it "sets and gets input_file" do
-        barcode = Zint::Eanx.new
+        barcode = Zint::Ean8.new
         barcode.input_file = "non-existant"
         expect(barcode.input_file).to eq "non-existant"
       end
@@ -345,7 +345,7 @@ module Zint
       end
 
       it "provides text with checksum" do
-        barcode = Zint::Eanx.new(value: "123456789012").encode
+        barcode = Zint::Ean13.new(value: "123456789012").encode
         expect(barcode.text).to eq "1234567890128"
       end
 

@@ -16,7 +16,7 @@ jobs:
           - os: ubuntu
             ruby: '3.2'
           - os: ubuntu
-            ruby: '2.6'
+            ruby: '3.0'
           - os: macos
             ruby: 'head'
 
@@ -24,7 +24,7 @@ jobs:
             ruby: 'head'
             builtin: 'true'
           - os: ubuntu
-            ruby: '2.6'
+            ruby: '3.0'
             builtin: 'true'
           - os: macos
             ruby: 'head'
