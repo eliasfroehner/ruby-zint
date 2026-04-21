@@ -14,6 +14,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
+  spec.metadata["changelog_uri"] = "https://github.com/eliasfroehner/ruby-zint/blob/master/CHANGELOG.md"
   spec.metadata["msys2_mingw_dependencies"] = "cmake libpng"
   spec.metadata["documentation_uri"] = "https://rubydoc.info/gems/ruby-zint"
 
